@@ -46,7 +46,7 @@ export default class Vector {
     return this.x === v.x && this.y === v.y && this.z === v.z;
   }
 
-  dot(v: Vector) {
+  dot(v: Vector): number {
     return this.x * v.x + this.y * v.y + this.z * v.z;
   }
 
