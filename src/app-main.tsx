@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { draw } from './draw';
 
+// Configuration
+export const WIDTH = 256;
+export const HEIGHT = 256;
+
 export default function AppMain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // Configuration
-    const WIDTH = 256;
-    const HEIGHT = 256;
-
     if (canvasRef.current != null) {
       // Set up the canvas with a 2D rendering context
       const canvas = canvasRef.current || {};
