@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { draw } from './draw';
+import { canvasMain } from './canvas-main';
 
 // Configuration
 export const WIDTH = 256;
@@ -19,7 +19,7 @@ export default function AppMain() {
       if (context) {
         context.imageSmoothingEnabled = false;
 
-        draw(context);
+        canvasMain(context);
       }
     }
   }, []);

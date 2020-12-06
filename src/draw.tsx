@@ -1,20 +1,3 @@
-import { WIDTH, HEIGHT } from './app-main';
-
-export function draw(context: CanvasRenderingContext2D) {
-  for (let j = 0; j < HEIGHT; j++) {
-    console.log('Scanlines remaining', HEIGHT - j);
-
-    for (let i = 0; i < WIDTH; i++) {
-      const r = i / (WIDTH - 1);
-      const g = j / (HEIGHT - 1);
-      const b = 0.25;
-
-      drawPixel(context, i, j, r, g, b);
-    }
-  }
-  console.log('Done.');
-}
-
 function drawPixelRaw(
   context: CanvasRenderingContext2D,
   x: number,
