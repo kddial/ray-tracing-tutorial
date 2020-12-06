@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
+import { draw } from './draw';
 
 export default function AppMain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     // Configuration
-    const WIDTH = 128;
-    const HEIGHT = 128;
+    const WIDTH = 256;
+    const HEIGHT = 256;
 
     if (canvasRef.current != null) {
       // Set up the canvas with a 2D rendering context
@@ -15,7 +16,11 @@ export default function AppMain() {
       canvas.height = HEIGHT;
 
       const context = canvas.getContext('2d');
-      if (context) context.imageSmoothingEnabled = false;
+      if (context) {
+        context.imageSmoothingEnabled = false;
+
+        draw(context);
+      }
     }
   }, []);
 
