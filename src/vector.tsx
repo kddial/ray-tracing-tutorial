@@ -94,8 +94,6 @@ export default class Vector {
   }
 }
 
-export class Point extends Vector {}
-
 // ### Static Methods
 // `Vector.randomDirection()` returns a vector with a length of 1 and a
 // statistically uniform direction. `Vector.lerp()` performs linear
