@@ -15,7 +15,7 @@ export default function AppMain() {
       const canvas = canvasRef.current || {};
       canvas.width = WIDTH;
       canvas.height = HEIGHT;
-      canvasMainGpu(canvasRef.current)();
+      canvasMainGpu(canvasRef.current);
     }
   }, []);
 

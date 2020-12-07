@@ -10,9 +10,9 @@ export function canvasMainGpu(canvasRef) {
     .createKernel(kernalFunction)
     .setGraphical(true)
     .setOutput([WIDTH, HEIGHT]);
-  return kernal;
+  kernal(WIDTH, HEIGHT);
 }
 
-function kernalFunction() {
-  this.color(Math.random(), Math.random(), Math.random());
+function kernalFunction(canvas_width, canvas_height) {
+  this.color(this.thread.x / canvas_width, this.thread.y / canvas_height, 0.2);
 }
