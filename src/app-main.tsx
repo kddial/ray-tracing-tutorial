@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useEffect, useRef } from 'react';
-import { canvasMain } from './canvas-main';
-import { GPU } from 'gpu.js';
+// import { canvasMain } from './canvas-main';
+import { canvasMainGpu } from './canvas-main-gpu';
 
 // Configuration
 export const WIDTH = 256;
@@ -15,19 +15,7 @@ export default function AppMain() {
       const canvas = canvasRef.current || {};
       canvas.width = WIDTH;
       canvas.height = HEIGHT;
-
-      function kernalFunction() {
-        this.color(Math.random(), Math.random(), Math.random());
-      }
-
-      const kernal = new GPU({
-        mode: 'gpu',
-        canvas: canvasRef.current,
-      })
-        .createKernel(kernalFunction)
-        .setGraphical(true)
-        .setOutput([WIDTH, HEIGHT]);
-      kernal();
+      canvasMainGpu(canvasRef.current)();
     }
   }, []);
 
