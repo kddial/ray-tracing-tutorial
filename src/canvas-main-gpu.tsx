@@ -23,7 +23,7 @@ export function canvasMainGpu(canvasRef) {
 
 function kernalFunction(canvas_width, canvas_height) {
   let blue = 0;
-  if (vecMin([1, 2, 3]) === 1) {
+  if (vecLength([0, 0, 3]) === 3) {
     blue = 0.3;
   }
 

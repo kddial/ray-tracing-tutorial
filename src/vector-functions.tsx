@@ -8,12 +8,24 @@ export function vecAdd(vec1: number[], vec2: number[]): number[] {
   return [vec1[0] + vec2[0], vec1[1] + vec2[1], vec1[2] + vec2[2]];
 }
 
+export function vecAddNum(vec1: number[], num: number): number[] {
+  return [vec1[0] + num, vec1[1] + num, vec1[2] + num];
+}
+
 export function vecSubtract(vec1: number[], vec2: number[]): number[] {
   return [vec1[0] - vec2[0], vec1[1] - vec2[1], vec1[2] - vec2[2]];
 }
 
+export function vecSubtractNum(vec1: number[], num: number): number[] {
+  return [vec1[0] - num, vec1[1] - num, vec1[2] - num];
+}
+
 export function vecMultiply(vec1: number[], vec2: number[]): number[] {
   return [vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]];
+}
+
+export function vecMultiplyNum(vec1: number[], num: number): number[] {
+  return [vec1[0] * num, vec1[1] * num, vec1[2] * num];
 }
 
 export function vecDivide(vec1: number[], vec2: number[]): number[] {
@@ -73,8 +85,11 @@ export function vecMax(vec: number[]): number {
 const vectorFunctions = [
   vecNegative,
   vecAdd,
+  vecAddNum,
   vecSubtract,
+  vecSubtractNum,
   vecMultiply,
+  vecMultiplyNum,
   vecDivide,
   vecDivideNum,
   vecEquals,
