@@ -88,6 +88,14 @@ const returnTypeArray3 = (func: any) => {
   return [func, { returnType: 'Array(3)' }];
 };
 
+const createFuncDefinition = (
+  func: any,
+  argumentTypes: any,
+  returnType: string,
+) => {
+  return [func, { argumentTypes, returnType: returnType }];
+};
+
 const returnTypeNumber = (func: any) => {
   return [func, { returnType: 'Number' }];
 };
@@ -96,12 +104,21 @@ const vectorFunctions = [
   returnTypeArray3(vecNegative),
   returnTypeArray3(vecAdd),
   returnTypeArray3(vecAddNum),
-  returnTypeArray3(vecSubtract),
+  createFuncDefinition(
+    vecSubtract,
+    { vec1: 'Array(3)', vec2: 'Array(3)' },
+    'Array(3)',
+  ),
+
   returnTypeArray3(vecSubtractNum),
   returnTypeArray3(vecMultiply),
   returnTypeArray3(vecMultiplyNum),
   returnTypeArray3(vecDivide),
-  returnTypeArray3(vecDivideNum),
+  createFuncDefinition(
+    vecDivideNum,
+    { vec1: 'Array(3)', num: 'Number' },
+    'Array(3)',
+  ),
   returnTypeNumber(vecEquals),
   returnTypeNumber(vecDot),
   returnTypeArray3(vecCross),
