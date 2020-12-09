@@ -36,8 +36,10 @@ export function vecDivideNum(vec1: number[], num: number): number[] {
   return [vec1[0] / num, vec1[1] / num, vec1[2] / num];
 }
 
-export function vecEquals(vec1: number[], vec2: number[]): boolean {
-  return vec1[0] === vec2[0] && vec1[1] === vec2[1] && vec1[2] === vec2[2];
+export function vecEquals(vec1: number[], vec2: number[]): number {
+  return vec1[0] === vec2[0] && vec1[1] === vec2[1] && vec1[2] === vec2[2]
+    ? 1
+    : 0;
 }
 
 export function vecDot(vec1: number[], vec2: number[]): number {
@@ -82,22 +84,31 @@ export function vecMax(vec: number[]): number {
 //   return Math.acos(this.dot(a) / (this.length() * a.length()));
 // }
 
+const returnTypeArray3 = (func: any) => {
+  return [func, { returnType: 'Array(3)' }];
+};
+
+const returnTypeNumber = (func: any) => {
+  return [func, { returnType: 'Number' }];
+};
+
 const vectorFunctions = [
-  vecNegative,
-  vecAdd,
-  vecAddNum,
-  vecSubtract,
-  vecSubtractNum,
-  vecMultiply,
-  vecMultiplyNum,
-  vecDivide,
-  vecDivideNum,
-  vecEquals,
-  vecDot,
-  vecCross,
-  vecLength,
-  vecUnit,
-  vecMin,
-  vecMax,
+  returnTypeArray3(vecNegative),
+  returnTypeArray3(vecAdd),
+  returnTypeArray3(vecAddNum),
+  returnTypeArray3(vecSubtract),
+  returnTypeArray3(vecSubtractNum),
+  returnTypeArray3(vecMultiply),
+  returnTypeArray3(vecMultiplyNum),
+  returnTypeArray3(vecDivide),
+  returnTypeArray3(vecDivideNum),
+  returnTypeNumber(vecEquals),
+  returnTypeNumber(vecDot),
+  returnTypeArray3(vecCross),
+  returnTypeNumber(vecLength),
+  returnTypeArray3(vecUnit),
+  returnTypeNumber(vecMin),
+  returnTypeNumber(vecMax),
 ];
+
 export default vectorFunctions;
