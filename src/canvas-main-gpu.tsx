@@ -29,7 +29,7 @@ export function canvasMainGpu(canvasRef) {
       // camera
       viewportHeight: 2,
       viewportWidth: 2,
-      focalLength: 2,
+      focalLength: 1,
     },
   });
 
@@ -57,7 +57,7 @@ function kernalFunction(cameraOriginRaw) {
   const canvasHeight = 256;
   const viewportHeight = 2;
   const viewportWidth = 2;
-  const focalLength = 2;
+  const focalLength = 1;
 
   // camera
   const cameraOrigin = [
@@ -78,9 +78,8 @@ function kernalFunction(cameraOriginRaw) {
   lowerLeftCorner = vecSubtract(lowerLeftCorner, [0, 0, focalLength]);
 
   // rays
-  // flip the value of j so (0,0) starts from the bottom left corner
   const i = this.thread.x;
-  const j = canvasHeight - this.thread.y;
+  const j = this.thread.y;
 
   const u = vecMultiplyNum(cameraHorizontal, i / (canvasWidth - 1));
   const v = vecMultiplyNum(cameraVertical, j / (canvasHeight - 1));

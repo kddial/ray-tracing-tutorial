@@ -30,7 +30,7 @@ export function raySkyColor(rayDirection: number[]): number[] {
   const t = 0.5 * (unit_direction[1] + 1);
   const color1 = vecMultiplyNum([1, 1, 1], 1 - t);
   const color2 = vecMultiplyNum([0.5, 0.7, 1.0], t);
-  return vecMultiply(color1, color2);
+  return vecAdd(color1, color2);
 }
 
 export const rayFunctions = [rayAt, hitSphere, raySkyColor];
