@@ -37,14 +37,13 @@ export function canvasMainGpu(canvasRef) {
 
   console.log(`Should aim for 16ms.`);
   function step() {
-    cameraOrigin[2] += 0.1;
-
     const startTime = Date.now();
     kernal(cameraOrigin);
     // window.kernalFn = kernal.toString(args);   // to debug output
     const endTime = Date.now();
     console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
 
+    cameraOrigin[2] += 0.01;
     // window.requestAnimationFrame(step);
   }
   step();
@@ -88,7 +87,7 @@ function kernalFunction(cameraOriginRaw) {
     vecAdd(vecAdd(lowerLeftCorner, u), v),
     cameraOrigin,
   );
-  const skyColor = raySkyColor(rayDirection);
+  const canvasColor = rayColor(cameraOrigin, rayDirection);
 
-  this.color(skyColor[0], skyColor[1], skyColor[2]);
+  this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }

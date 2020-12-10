@@ -16,13 +16,13 @@ export function hitSphere(
   rayDirection: number[],
   sphereCenter: number[],
   radius: number,
-): boolean {
+): number {
   const offsetCenter = vecSubtract(rayOrigin, sphereCenter);
   const a = vecDot(rayDirection, rayDirection);
   const b = vecDot(offsetCenter, rayDirection) * 2;
   const c = vecDot(offsetCenter, offsetCenter) - radius * radius;
   const discriminant = b * b - 4 * a * c;
-  return discriminant > 0;
+  return discriminant > 0 ? 1 : 0;
 }
 
 export function raySkyColor(rayDirection: number[]): number[] {
@@ -33,5 +33,19 @@ export function raySkyColor(rayDirection: number[]): number[] {
   return vecAdd(color1, color2);
 }
 
-export const rayFunctions = [rayAt, hitSphere, raySkyColor];
+export function rayColor(
+  rayOrigin: number[],
+  rayDirection: number[],
+): number[] {
+  const sphereCenter = [0, 0, -2];
+  const sphereRadius = 0.5;
+
+  if (hitSphere(rayOrigin, rayDirection, sphereCenter, sphereRadius) === 1) {
+    return [1, 0, 0];
+  }
+
+  return raySkyColor(rayDirection);
+}
+
+export const rayFunctions = [rayAt, hitSphere, raySkyColor, rayColor];
 export default rayFunctions;
