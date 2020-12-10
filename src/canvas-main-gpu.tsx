@@ -8,8 +8,8 @@ import rayFunctions from './ray-functions';
 
 export function canvasMainGpu(canvasRef) {
   const gpu = new GPU({
-    mode: 'gpu',
-    // mode: 'cpu', // cpu mode to allow debuggin inside kernal
+    // mode: 'gpu',
+    mode: 'cpu', // cpu mode to allow debuggin inside kernal
     canvas: canvasRef,
   });
 
@@ -45,13 +45,19 @@ export function canvasMainGpu(canvasRef) {
 }
 
 function kernalFunction(cameraOriginRaw) {
-  const {
-    canvasWidth,
-    canvasHeight,
-    viewportHeight,
-    viewportWidth,
-    focalLength,
-  } = this.constants;
+  // const {
+  //   canvasWidth,
+  //   canvasHeight,
+  //   viewportHeight,
+  //   viewportWidth,
+  //   focalLength,
+  // } = this.constants;
+
+  const canvasWidth = 256;
+  const canvasHeight = 256;
+  const viewportHeight = 2;
+  const viewportWidth = 2;
+  const focalLength = 2;
 
   // camera
   const cameraOrigin = [
