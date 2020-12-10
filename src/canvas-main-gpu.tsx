@@ -8,8 +8,8 @@ import rayFunctions from './ray-functions';
 
 export function canvasMainGpu(canvasRef) {
   const gpu = new GPU({
-    // mode: 'gpu',
-    mode: 'cpu', // cpu mode to allow debuggin inside kernal
+    mode: 'gpu',
+    // mode: 'cpu', // debug in cpu mode
     canvas: canvasRef,
   });
 
@@ -37,24 +37,17 @@ export function canvasMainGpu(canvasRef) {
 
   const startTime = Date.now();
   kernal(cameraOrigin);
-  // to debug output
-  // window.kernalFn = kernal.toString(args);
+  // window.kernalFn = kernal.toString(args);   // to debug output
   const endTime = Date.now();
   console.log(`Done in ${endTime - startTime} ms.`);
   console.log(`Should aim for 16ms.`);
 }
 
 function kernalFunction(cameraOriginRaw) {
-  // const {
-  //   canvasWidth,
-  //   canvasHeight,
-  //   viewportHeight,
-  //   viewportWidth,
-  //   focalLength,
-  // } = this.constants;
+  const { canvasWidth, canvasHeight } = this.constants;
+  // const canvasWidth = 256; // debug in cpu mode
+  // const canvasHeight = 256; // debug in cpu mode
 
-  const canvasWidth = 256;
-  const canvasHeight = 256;
   const viewportHeight = 2;
   const viewportWidth = 2;
   const focalLength = 1;
