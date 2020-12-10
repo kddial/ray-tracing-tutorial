@@ -44,7 +44,7 @@ export function canvasMain(context: CanvasRenderingContext2D) {
     const endTime = Date.now();
     console.log(`Done in ${endTime - startTime} ms. [JS]`);
 
-    origin = origin.add(new Vector(0, 0, 0.1));
+    origin = origin.add(new Vector(0, 0, 0.01));
     // window.requestAnimationFrame(step);
   }
   step();
