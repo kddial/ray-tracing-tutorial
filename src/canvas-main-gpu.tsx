@@ -29,17 +29,19 @@ export function canvasMainGpu(canvasRef) {
     },
   });
 
-  // Cannot set arugmentTypes on kernal function when graphical is set to true
-  // So spread out the vector values.
   const cameraOrigin = [0, 0, 0];
-  kernal(cameraOrigin[0], cameraOrigin[1], cameraOrigin[2]);
+  kernal(cameraOrigin);
   // to debug output
   // window.kernalFn = kernal.toString(args);
 }
 
-function kernalFunction(cameraOriginX, cameraOriginY, cameraOriginZ) {
+function kernalFunction(cameraOriginRaw) {
   // camera
-  const cameraOrigin = [cameraOriginX, cameraOriginY, cameraOriginZ];
+  const cameraOrigin = [
+    cameraOriginRaw[0],
+    cameraOriginRaw[1],
+    cameraOriginRaw[2],
+  ];
   const cameraHorizontal = [this.constants.viewportWidth, 0, 0];
   const cameraVertical = [0, this.constants.viewportHeight, 0];
   let lowerLeftCorner = vecSubtract(
