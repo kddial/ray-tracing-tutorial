@@ -1,26 +1,7 @@
+// @ts-nocheck
+
 // can refer for hitSphere or hitTriangle
 // https://github.com/evanw/lightgl.js/blob/master/src/raytracer.js
-
-import {
-  vecNegative,
-  vecAdd,
-  vecAddNum,
-  vecSubtract,
-  vecSubtractNum,
-  vecMultiply,
-  vecMultiplyNum,
-  vecDivide,
-  vecDivideNum,
-  vecEquals,
-  vecDot,
-  vecCross,
-  vecLength,
-  vecUnit,
-  vecMin,
-  vecMax,
-} from './vector-functions';
-
-// rayOrigin, rayDirection
 
 export function rayAt(
   rayOrigin: number[],
@@ -44,13 +25,13 @@ export function hitSphere(
   return discriminant > 0;
 }
 
-export function raySkyColor(
-  rayOrigin: number[],
-  rayDirection: number[],
-): number[] {
+export function raySkyColor(rayDirection: number[]): number[] {
   const unit_direction = vecUnit(rayDirection);
   const t = 0.5 * (unit_direction[1] + 1);
   const color1 = vecMultiplyNum([1, 1, 1], 1 - t);
   const color2 = vecMultiplyNum([0.5, 0.7, 1.0], t);
   return vecMultiply(color1, color2);
 }
+
+export const rayFunctions = [rayAt, hitSphere, raySkyColor];
+export default rayFunctions;
