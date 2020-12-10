@@ -35,12 +35,19 @@ export function canvasMainGpu(canvasRef) {
 
   const cameraOrigin = [0, 0, 0];
 
-  const startTime = Date.now();
-  kernal(cameraOrigin);
-  // window.kernalFn = kernal.toString(args);   // to debug output
-  const endTime = Date.now();
-  console.log(`Done in ${endTime - startTime} ms.`);
   console.log(`Should aim for 16ms.`);
+  function step() {
+    cameraOrigin[2] += 0.1;
+
+    const startTime = Date.now();
+    kernal(cameraOrigin);
+    // window.kernalFn = kernal.toString(args);   // to debug output
+    const endTime = Date.now();
+    console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
+
+    // window.requestAnimationFrame(step);
+  }
+  step();
 }
 
 function kernalFunction(cameraOriginRaw) {
