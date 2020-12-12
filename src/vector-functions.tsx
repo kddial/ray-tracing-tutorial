@@ -58,11 +58,14 @@ export function vecCross(vec1: number[], vec2: number[]): number[] {
 }
 
 export function vecLength(vec: number[]): number {
-  return Math.sqrt(vecDot(vec, vec));
+  const dot = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
+  return Math.sqrt(dot);
 }
 
 export function vecUnit(vec: number[]): number[] {
-  return vecDivideNum(vec, vecLength(vec));
+  const dot = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
+  const length = Math.sqrt(dot);
+  return [vec[0] / length, vec[1] / length, vec[2] / length];
 }
 
 export function vecMin(vec: number[]): number {
@@ -120,10 +123,16 @@ const vectorFunctions = [
     'Array(3)',
   ),
   returnTypeNumber(vecEquals),
-  returnTypeNumber(vecDot),
+  createFuncDefinition(
+    vecDot,
+    { vec1: 'Array(3)', vec2: 'Array(3)' },
+    'Number',
+  ),
+
   returnTypeArray3(vecCross),
-  returnTypeNumber(vecLength),
-  returnTypeArray3(vecUnit),
+  createFuncDefinition(vecLength, { vec: 'Array(3)' }, 'Number'),
+
+  createFuncDefinition(vecUnit, { vec: 'Array(3)' }, 'Array(3)'),
   returnTypeNumber(vecMin),
   returnTypeNumber(vecMax),
 ];
