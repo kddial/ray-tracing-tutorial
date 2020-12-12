@@ -1,5 +1,4 @@
 // @ts-nocheck
-// TODO bring back typescript!
 
 import { WIDTH, HEIGHT } from './app-main';
 import { GPU } from 'gpu.js';
