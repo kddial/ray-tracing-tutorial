@@ -4,7 +4,7 @@ import { canvasMain } from './canvas-main';
 import { canvasMainGpu } from './canvas-main-gpu';
 
 // Configuration
-export const WIDTH = 256;
+export const WIDTH = 256; // should match in kernalFunction
 export const HEIGHT = 256;
 
 export default function AppMain() {

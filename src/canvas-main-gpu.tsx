@@ -23,14 +23,6 @@ export function canvasMainGpu(canvasRef) {
   const kernal = gpu.createKernel(kernalFunction, {
     output: [WIDTH, HEIGHT],
     graphical: true,
-    constants: {
-      canvasWidth: WIDTH,
-      canvasHeight: HEIGHT,
-      // camera
-      viewportHeight: 2,
-      viewportWidth: 2,
-      focalLength: 1,
-    },
   });
 
   const cameraOrigin = [0, 0, 0];
@@ -50,10 +42,11 @@ export function canvasMainGpu(canvasRef) {
 }
 
 function kernalFunction(cameraOriginRaw) {
-  const { canvasWidth, canvasHeight } = this.constants;
-  // const canvasWidth = 256; // debug in cpu mode
-  // const canvasHeight = 256; // debug in cpu mode
+  // canvas
+  const canvasWidth = 256;
+  const canvasHeight = 256;
 
+  // camera
   const viewportHeight = 2;
   const viewportWidth = 2;
   const focalLength = 1;
