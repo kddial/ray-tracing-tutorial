@@ -18,15 +18,15 @@ export function hitSphere(
   radius: number,
 ): number {
   const offsetCenter = vecSubtract(rayOrigin, sphereCenter);
-  const a = vecDot(rayDirection, rayDirection);
-  const b = vecDot(offsetCenter, rayDirection) * 2;
-  const c = vecDot(offsetCenter, offsetCenter) - radius * radius;
-  const discriminant = b * b - 4 * a * c;
+  const a = vecLengthSquared(rayDirection);
+  const halfB = vecDot(offsetCenter, rayDirection);
+  const c = vecLengthSquared(offsetCenter) - radius * radius;
+  const discriminant = halfB * halfB - a * c;
 
   if (discriminant < 0) {
     return -1;
   } else {
-    return (-b - Math.sqrt(discriminant)) / (2 * a);
+    return (-halfB - Math.sqrt(discriminant)) / a;
   }
 }
 
