@@ -26,11 +26,12 @@ export function canvasMainGpu(canvasRef) {
 
   const cameraOrigin = [0, 0, 0];
 
+  // window.kernalFn = kernal.toString(cameraOrigin); // to debug output in GPU mode
+
   console.log(`Should aim for 16ms.`);
   function step() {
     const startTime = Date.now();
     kernal(cameraOrigin);
-    // window.kernalFn = kernal.toString(args);   // to debug output
     const endTime = Date.now();
     console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
 
