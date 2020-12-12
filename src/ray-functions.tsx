@@ -22,7 +22,12 @@ export function hitSphere(
   const b = vecDot(offsetCenter, rayDirection) * 2;
   const c = vecDot(offsetCenter, offsetCenter) - radius * radius;
   const discriminant = b * b - 4 * a * c;
-  return discriminant > 0 ? 1 : 0;
+
+  if (discriminant < 0) {
+    return -1;
+  } else {
+    return (-b - Math.sqrt(discriminant)) / (2 * a);
+  }
 }
 
 export function raySkyColor(rayDirection: number[]): number[] {
@@ -37,11 +42,15 @@ export function rayColor(
   rayOrigin: number[],
   rayDirection: number[],
 ): number[] {
-  const sphereCenter = [0, 0, -2];
+  const sphereCenter = [0, 0, -1];
   const sphereRadius = 0.5;
 
-  if (hitSphere(rayOrigin, rayDirection, sphereCenter, sphereRadius) === 1) {
-    return [1, 0, 0];
+  const t = hitSphere(rayOrigin, rayDirection, sphereCenter, sphereRadius);
+  if (t > 0) {
+    const normal = vecUnit(
+      vecSubtract(rayAt(rayOrigin, rayDirection, t), sphereCenter),
+    );
+    return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
   }
 
   return raySkyColor(rayDirection);
