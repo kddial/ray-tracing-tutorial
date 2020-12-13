@@ -25,6 +25,7 @@ export function canvasMainGpu(canvasRef) {
   });
 
   const cameraOrigin = [0, 0, 0];
+  let cameraAngle = 270; // in degrees
 
   // window.kernalFn = kernal.toString(cameraOrigin); // to debug output in GPU mode
 
@@ -42,6 +43,9 @@ export function canvasMainGpu(canvasRef) {
 }
 
 function kernalFunction(cameraOriginRaw) {
+  // constants
+  const PI = 3.1415926535897932385;
+
   // canvas
   const canvasWidth = 256;
   const canvasHeight = 256;
@@ -57,8 +61,19 @@ function kernalFunction(cameraOriginRaw) {
     cameraOriginRaw[1],
     cameraOriginRaw[2],
   ];
-  const cameraHorizontal = [viewportWidth, 0, 0];
-  const cameraVertical = [0, viewportHeight, 0];
+
+  const cameraAngle = 90 + 45;
+  const cRadians = (cameraAngle * PI) / 180;
+  const cameraDirection = [Math.cos(cRadians), 0, Math.sin(cRadians)];
+
+  // x,y,x => u,v,w
+  const vup = [0, 1, 0]; // vector up in the y-axis
+  const w = vecUnit(cameraDirection);
+  const u = vecCross(vup, w);
+  const v = vecCross(w, u);
+
+  const cameraHorizontal = vecMultiplyNum(u, viewportWidth);
+  const cameraVertical = vecMultiplyNum(v, viewportHeight);
   let lowerLeftCorner = vecSubtract(
     cameraOrigin,
     vecDivideNum(cameraHorizontal, 2),
@@ -67,17 +82,20 @@ function kernalFunction(cameraOriginRaw) {
     lowerLeftCorner,
     vecDivideNum(cameraVertical, 2),
   );
-  lowerLeftCorner = vecSubtract(lowerLeftCorner, [0, 0, focalLength]);
+  lowerLeftCorner = vecSubtract(
+    lowerLeftCorner,
+    vecMultiplyNum(w, focalLength),
+  );
 
   // rays
   const i = this.thread.x;
   const j = this.thread.y;
 
-  const u = vecMultiplyNum(cameraHorizontal, i / (canvasWidth - 1));
-  const v = vecMultiplyNum(cameraVertical, j / (canvasHeight - 1));
+  const s = vecMultiplyNum(cameraHorizontal, i / (canvasWidth - 1));
+  const t = vecMultiplyNum(cameraVertical, j / (canvasHeight - 1));
 
   const rayDirection = vecSubtract(
-    vecAdd(vecAdd(lowerLeftCorner, u), v),
+    vecAdd(vecAdd(lowerLeftCorner, s), t),
     cameraOrigin,
   );
   const canvasColor = rayColor(cameraOrigin, rayDirection);
