@@ -25,24 +25,24 @@ export function canvasMainGpu(canvasRef) {
   });
 
   const cameraOrigin = [0, 0, 0];
-  let cameraAngle = 270; // in degrees
+  let cameraAngle = 90; // in degrees
 
-  // window.kernalFn = kernal.toString(cameraOrigin); // to debug output in GPU mode
+  // window.kernalFn = kernal.toString(cameraOrigin, cameraAngle); // to debug output in GPU mode
 
   console.log(`Should aim for 16ms.`);
   function step() {
     const startTime = Date.now();
-    kernal(cameraOrigin);
+    kernal(cameraOrigin, cameraAngle);
     const endTime = Date.now();
     console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
 
-    cameraOrigin[2] += 0.01;
-    // window.requestAnimationFrame(step);
+    cameraAngle = (cameraAngle + 1) % 180;
+    window.requestAnimationFrame(step);
   }
   step();
 }
 
-function kernalFunction(cameraOriginRaw) {
+function kernalFunction(cameraOriginRaw, cameraAngle) {
   // constants
   const PI = 3.1415926535897932385;
 
@@ -61,8 +61,6 @@ function kernalFunction(cameraOriginRaw) {
     cameraOriginRaw[1],
     cameraOriginRaw[2],
   ];
-
-  const cameraAngle = 90 + 45;
   const cRadians = (cameraAngle * PI) / 180;
   const cameraDirection = [Math.cos(cRadians), 0, Math.sin(cRadians)];
 
