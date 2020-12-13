@@ -36,7 +36,7 @@ export function canvasMainGpu(canvasRef) {
     const endTime = Date.now();
     console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
 
-    cameraAngle = (cameraAngle + 1) % 180;
+    cameraAngle = (cameraAngle + 0.5) % 180;
     window.requestAnimationFrame(step);
   }
   step();
