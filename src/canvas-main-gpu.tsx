@@ -8,7 +8,7 @@ import rayFunctions from './ray-functions';
 export function canvasMainGpu(canvasRef) {
   const gpu = new GPU({
     mode: 'gpu',
-    // mode: 'cpu', // debug in cpu mode
+    mode: 'cpu', // debug in cpu mode
     canvas: canvasRef,
   });
 
@@ -37,7 +37,7 @@ export function canvasMainGpu(canvasRef) {
     console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
 
     cameraAngle = (cameraAngle + 1) % 180;
-    window.requestAnimationFrame(step);
+    // window.requestAnimationFrame(step);
   }
   step();
 }
@@ -96,7 +96,20 @@ function kernalFunction(cameraOriginRaw, cameraAngle) {
     vecAdd(vecAdd(lowerLeftCorner, s), t),
     cameraOrigin,
   );
-  const canvasColor = rayColor(cameraOrigin, rayDirection);
+
+  const offsetCameraHorizontal = [rayDirection[0], rayDirection[1], 0];
+  const offsetCameraOriginHorizontal = vecAdd(
+    cameraOrigin,
+    offsetCameraHorizontal,
+  );
+
+  // console.log(1111111111111);
+  // console.log(offsetCameraOriginHorizontal);
+  // console.log(rayDirection);
+  // console.log(2222222222222);
+  // debugger;
+
+  const canvasColor = rayColor(offsetCameraOriginHorizontal, rayDirection);
 
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }
