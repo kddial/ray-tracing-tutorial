@@ -53,7 +53,7 @@ function kernalFunction(cameraOriginRaw, cameraAngle) {
   // camera
   const viewportHeight = 2;
   const viewportWidth = 2;
-  const focalLength = 1;
+  const focalLength = 2;
 
   // camera
   const cameraOrigin = [
@@ -96,9 +96,8 @@ function kernalFunction(cameraOriginRaw, cameraAngle) {
     vecAdd(vecAdd(lowerLeftCameraPlane, s), t),
     cameraOrigin,
   );
-  const cameraOriginOffset = vecAdd(vecAdd(lowerLeftCameraOrigin, s), t);
 
-  const canvasColor = rayColor(cameraOriginOffset, rayDirection);
+  const canvasColor = rayColor(cameraOrigin, rayDirection);
 
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }

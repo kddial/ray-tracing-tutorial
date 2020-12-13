@@ -42,7 +42,7 @@ export function rayColor(
   rayOrigin: number[],
   rayDirection: number[],
 ): number[] {
-  const sphereCenter = [0, 0, -1];
+  const sphereCenter = [0, 0, -7];
   const sphereRadius = 0.5;
 
   const t = hitSphere(rayOrigin, rayDirection, sphereCenter, sphereRadius);
