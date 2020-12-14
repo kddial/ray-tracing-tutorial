@@ -1,5 +1,8 @@
 import { canvasMainGpu } from './canvas-main-gpu';
 
+const mouseSensitivity = 0.5;
+let mouseX = 0;
+
 export function setup(canvas: HTMLCanvasElement) {
   // mouse lock
   canvas.onclick = () => {
@@ -9,10 +12,10 @@ export function setup(canvas: HTMLCanvasElement) {
   function lockChangeAlert() {
     if (document.pointerLockElement === canvas) {
       console.log('locked');
-      // document.addEventListener('mousemove', updatePosition, false);
+      document.addEventListener('mousemove', updatePosition, false);
     } else {
       console.log('unlocked');
-      // document.removeEventListener('mousemove', updatePosition, false);
+      document.removeEventListener('mousemove', updatePosition, false);
     }
   }
   document.addEventListener('pointerlockchange', lockChangeAlert, false);
@@ -27,8 +30,13 @@ export function step(kernal: any) {
 
   function step() {
     kernal(cameraOrigin, cameraAngle);
-    cameraAngle += 1;
+    cameraAngle += mouseX;
+    mouseX = 0;
     window.requestAnimationFrame(step);
   }
   step();
+}
+
+function updatePosition(e: MouseEvent) {
+  mouseX += e.movementX * mouseSensitivity;
 }
