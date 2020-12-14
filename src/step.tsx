@@ -2,7 +2,7 @@ import { canvasMainGpu } from './canvas-main-gpu';
 
 const mouseSensitivity = 0.5;
 let mouseX = 0;
-let cameraAngle = 90; // in degrees
+let cameraAngleX = 90; // in degrees
 
 export function setup(
   canvas: HTMLCanvasElement,
@@ -30,13 +30,13 @@ export function setup(
   return kernal;
 }
 
-export function step(kernal: any, setCameraAngle: (value: number) => void) {
+export function step(kernal: any, setCameraAngleX: (value: number) => void) {
   const cameraOrigin = [0, 0, 0];
 
   function step() {
-    kernal(cameraOrigin, cameraAngle);
-    cameraAngle = (cameraAngle + mouseX) % 360;
-    setCameraAngle(cameraAngle);
+    kernal(cameraOrigin, cameraAngleX);
+    cameraAngleX = (cameraAngleX + mouseX) % 360;
+    setCameraAngleX(cameraAngleX);
     mouseX = 0;
     window.requestAnimationFrame(step);
   }
