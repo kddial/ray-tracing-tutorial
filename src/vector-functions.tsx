@@ -62,6 +62,11 @@ export function vecLength(vec: number[]): number {
   return Math.sqrt(dot);
 }
 
+export function vecLengthSquared(vec: number[]): number {
+  const dot = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
+  return dot;
+}
+
 export function vecUnit(vec: number[]): number[] {
   const dot = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
   const length = Math.sqrt(dot);
@@ -131,6 +136,7 @@ const vectorFunctions = [
 
   returnTypeArray3(vecCross),
   createFuncDefinition(vecLength, { vec: 'Array(3)' }, 'Number'),
+  createFuncDefinition(vecLengthSquared, { vec: 'Array(3)' }, 'Number'),
 
   createFuncDefinition(vecUnit, { vec: 'Array(3)' }, 'Array(3)'),
   returnTypeNumber(vecMin),

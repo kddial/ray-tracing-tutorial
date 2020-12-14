@@ -19,7 +19,7 @@ export default class Ray {
 
   color(): Color {
     // hardcode sphere object
-    if (this.hitSphere(new Vector(0, 0, -2), 0.5)) {
+    if (this.hitSphere(new Vector(0, 0, -1), 0.5)) {
       return new Color(1, 0, 0);
     }
 
