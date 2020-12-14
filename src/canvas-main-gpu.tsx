@@ -27,7 +27,7 @@ export function canvasMainGpu(canvasRef) {
   return kernal;
 }
 
-function kernalFunction(cameraOriginRaw, cameraAngleX) {
+function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY) {
   // constants
   const PI = 3.1415926535897932385;
 
@@ -47,7 +47,12 @@ function kernalFunction(cameraOriginRaw, cameraAngleX) {
     cameraOriginRaw[2],
   ];
   const cRadiansX = (cameraAngleX * PI) / 180;
-  const cameraDirection = [Math.cos(cRadiansX), 0, Math.sin(cRadiansX)];
+  const cRadiansY = (cameraAngleY * PI) / 180;
+  const cameraDirection = [
+    Math.cos(cRadiansX),
+    Math.sin(cRadiansY),
+    Math.sin(cRadiansX),
+  ];
 
   // x,y,x => u,v,w
   const vup = [0, 1, 0]; // vector up in the y-axis
