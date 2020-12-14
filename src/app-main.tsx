@@ -10,6 +10,7 @@ export default function AppMain() {
   const canvasRef1 = useRef<HTMLCanvasElement>(null);
   const [isLocked, setIsLocked] = useState(false);
   const [cameraAngleX, setCameraAngleX] = useState(null);
+  const [cameraAngleY, setCameraAngleY] = useState(null);
 
   useEffect(() => {
     if (canvasRef1.current != null) {
@@ -18,7 +19,7 @@ export default function AppMain() {
       canvas.height = HEIGHT;
 
       const kernal = setup(canvas, setIsLocked);
-      step(kernal, setCameraAngleX);
+      step(kernal, setCameraAngleX, setCameraAngleY);
     }
   }, []);
 
@@ -28,6 +29,7 @@ export default function AppMain() {
       <div className="game-info">
         <p>isLocked: {isLocked ? 'true' : 'false'}</p>
         <p>cameraAngleX: {cameraAngleX}</p>
+        <p>cameraAngleY: {cameraAngleY}</p>
       </div>
     </div>
   );

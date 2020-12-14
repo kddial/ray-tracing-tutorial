@@ -32,14 +32,19 @@ export function setup(
   return kernal;
 }
 
-export function step(kernal: any, setCameraAngleX: (value: number) => void) {
+export function step(
+  kernal: any,
+  setCameraAngleX: (value: number) => void,
+  setCameraAngleY: (value: number) => void,
+) {
   const cameraOrigin = [0, 0, 0];
 
   function step() {
     kernal(cameraOrigin, cameraAngleX, cameraAngleY);
     cameraAngleX = (cameraAngleX + mouseX) % 360;
-    cameraAngleY = cameraAngleY + mouseY; // -80 to +80 TODO
     setCameraAngleX(cameraAngleX);
+    cameraAngleY = mathClamp(cameraAngleY + mouseY, -45, 45);
+    setCameraAngleY(cameraAngleY);
     mouseX = 0;
     mouseY = 0;
     window.requestAnimationFrame(step);
@@ -50,4 +55,8 @@ export function step(kernal: any, setCameraAngleX: (value: number) => void) {
 function updatePosition(e: MouseEvent) {
   mouseX += e.movementX * mouseSensitivity;
   mouseY += e.movementY * mouseSensitivity;
+}
+
+function mathClamp(num: number, min: number, max: number): number {
+  return num <= min ? min : num >= max ? max : num;
 }
