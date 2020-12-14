@@ -25,7 +25,11 @@ export default function AppMain() {
 
   return (
     <div className="canvas-container">
-      <canvas id="canvas1" ref={canvasRef1}></canvas>
+      <canvas
+        id="canvas1"
+        ref={canvasRef1}
+        style={{ border: isLocked ? 'none' : '3px solid yellow' }}
+      ></canvas>
       <div className="game-info">
         <p>isLocked: {isLocked ? 'true' : 'false'}</p>
         <p>cameraAngleX: {cameraAngleX}</p>
