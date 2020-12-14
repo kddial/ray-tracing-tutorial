@@ -22,3 +22,12 @@ Should aim for 16ms.
 249 ms to render 256 x 256
 
 ```
+
+
+# to debug gpu.js
+
+```
+window.kernalFn = kernal.toString(cameraOrigin, cameraAngle)
+console.log(window.kernalFn);
+```
+

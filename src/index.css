@@ -31,3 +31,18 @@ canvas {
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
 }
+
+.game-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100px;
+  background: white;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+p {
+  margin: 0;
+}

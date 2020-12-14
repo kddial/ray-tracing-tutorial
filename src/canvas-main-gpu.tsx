@@ -24,22 +24,7 @@ export function canvasMainGpu(canvasRef) {
     graphical: true,
   });
 
-  const cameraOrigin = [0, 0, 0];
-  let cameraAngle = 90; // in degrees
-
-  // window.kernalFn = kernal.toString(cameraOrigin, cameraAngle); // to debug output in GPU mode
-
-  console.log(`Should aim for 16ms.`);
-  function step() {
-    const startTime = Date.now();
-    kernal(cameraOrigin, cameraAngle);
-    const endTime = Date.now();
-    console.log(`Done in ${endTime - startTime} ms. [GPU.JS]`);
-
-    cameraAngle = (cameraAngle + 0.5) % 180;
-    window.requestAnimationFrame(step);
-  }
-  step();
+  return kernal;
 }
 
 function kernalFunction(cameraOriginRaw, cameraAngle) {
