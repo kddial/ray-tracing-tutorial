@@ -9,8 +9,8 @@ export const HEIGHT = 256;
 export default function AppMain() {
   const canvasRef1 = useRef<HTMLCanvasElement>(null);
   const [isLocked, setIsLocked] = useState(false);
-  const [cameraAngleX, setCameraAngleX] = useState(null);
-  const [cameraAngleY, setCameraAngleY] = useState(null);
+  const [uiCameraAngleX, setUICameraAngleX] = useState(null);
+  const [uiCameraAngleY, setUICameraAngleY] = useState(null);
   const [uiCameraOrigin, setUICameraOrigin] = useState([0, 0, 0]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function AppMain() {
       canvas.height = HEIGHT;
 
       const kernal = setup(canvas, setIsLocked);
-      step(kernal, setCameraAngleX, setCameraAngleY, setUICameraOrigin);
+      step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin);
     }
   }, []);
 
@@ -32,12 +32,12 @@ export default function AppMain() {
         style={{ border: isLocked ? 'none' : '3px solid yellow' }}
       ></canvas>
       <div className="game-info">
-        <p>isLocked: {isLocked ? 'true' : 'false'}</p>
-        <p>cameraAngleX: {cameraAngleX}</p>
-        <p>cameraAngleY: {cameraAngleY}</p>
+        <p>Canvas locked: {isLocked ? 'true' : 'false'}</p>
+        <p>Camera AngleX: {uiCameraAngleX}</p>
+        <p>Camera AngleY: {uiCameraAngleY}</p>
         <p>
-          Camera Origin: {uiCameraOrigin[0]}, {uiCameraOrigin[1]},{' '}
-          {uiCameraOrigin[2]}
+          Camera Origin: {Math.round(uiCameraOrigin[0])},{' '}
+          {Math.round(uiCameraOrigin[1])}, {Math.round(uiCameraOrigin[2])}
         </p>
       </div>
     </div>

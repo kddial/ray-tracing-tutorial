@@ -43,8 +43,8 @@ function updatePosition(e: MouseEvent) {
 
 export function step(
   kernal: any,
-  setCameraAngleX: (value: number) => void,
-  setCameraAngleY: (value: number) => void,
+  setUICameraAngleX: (value: number) => void,
+  setUICameraAngleY: (value: number) => void,
   setUICameraOrigin: (origin: number[]) => void,
 ) {
   function step() {
@@ -63,8 +63,8 @@ export function step(
     kernal(cameraOrigin, cameraAngleX, cameraAngleY);
 
     // set game info for React UI
-    setCameraAngleX(cameraAngleX);
-    setCameraAngleY(cameraAngleY);
+    setUICameraAngleX(cameraAngleX);
+    setUICameraAngleY(cameraAngleY);
     setUICameraOrigin(cameraOrigin);
     window.requestAnimationFrame(step);
   }
