@@ -6,7 +6,7 @@ const moveMultiplier = 0.2;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
-let cameraAngleX = 90; // in degrees
+let cameraAngleX = 0; // in degrees
 let cameraAngleY = 0; // in degrees
 let cameraOrigin = [0, 0, 0];
 
