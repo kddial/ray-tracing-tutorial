@@ -82,7 +82,7 @@ function getMoveVector() {
   // backward is +x
   // left is +z
   // right is -z
-  const moveVector = [0, 0, 0];
+  let moveVector = [0, 0, 0];
   const x = 0;
   const z = 2;
   if (keyPress['w']) {
@@ -92,10 +92,21 @@ function getMoveVector() {
     moveVector[x] = 1;
   }
   if (keyPress['a']) {
-    moveVector[z] = +1;
-  }
-  if (keyPress['d']) {
     moveVector[z] = -1;
   }
-  return vecUnit(moveVector);
+  if (keyPress['d']) {
+    moveVector[z] = 1;
+  }
+  moveVector = vecUnit(moveVector);
+
+  // rotate moveVector by cameraAngleX
+  // x' = x·cosθ - y·sinθ
+  // y' = x·sinθ - y·cosθ
+  const oldX = moveVector[x];
+  const oldZ = moveVector[z];
+  const theta = (cameraAngleX * Math.PI) / 180;
+  const newX = oldX * Math.cos(theta) - oldZ * Math.sin(theta);
+  const newZ = oldX * Math.sin(theta) - oldZ * Math.cos(theta);
+
+  return [newX, 0, newZ];
 }
