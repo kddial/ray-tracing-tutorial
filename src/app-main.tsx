@@ -11,6 +11,7 @@ export default function AppMain() {
   const [isLocked, setIsLocked] = useState(false);
   const [cameraAngleX, setCameraAngleX] = useState(null);
   const [cameraAngleY, setCameraAngleY] = useState(null);
+  const [uiCameraOrigin, setUICameraOrigin] = useState([0, 0, 0]);
 
   useEffect(() => {
     if (canvasRef1.current != null) {
@@ -19,7 +20,7 @@ export default function AppMain() {
       canvas.height = HEIGHT;
 
       const kernal = setup(canvas, setIsLocked);
-      step(kernal, setCameraAngleX, setCameraAngleY);
+      step(kernal, setCameraAngleX, setCameraAngleY, setUICameraOrigin);
     }
   }, []);
 
@@ -34,6 +35,10 @@ export default function AppMain() {
         <p>isLocked: {isLocked ? 'true' : 'false'}</p>
         <p>cameraAngleX: {cameraAngleX}</p>
         <p>cameraAngleY: {cameraAngleY}</p>
+        <p>
+          Camera Origin: {uiCameraOrigin[0]}, {uiCameraOrigin[1]},{' '}
+          {uiCameraOrigin[2]}
+        </p>
       </div>
     </div>
   );
