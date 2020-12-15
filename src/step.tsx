@@ -1,10 +1,14 @@
 import { canvasMainGpu } from './canvas-main-gpu';
+import { getMoveVector } from './key-press';
+import { vecAdd, vecMultiplyNum } from './vector-functions';
 
+const moveMultiplier = 0.2;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
 let cameraAngleX = 90; // in degrees
 let cameraAngleY = 0; // in degrees
+let cameraOrigin = [0, 0, 0];
 
 export function setup(
   canvas: HTMLCanvasElement,
@@ -32,29 +36,37 @@ export function setup(
   return kernal;
 }
 
+function updatePosition(e: MouseEvent) {
+  mouseX += e.movementX * mouseSensitivity;
+  mouseY += e.movementY * mouseSensitivity;
+}
+
 export function step(
   kernal: any,
   setCameraAngleX: (value: number) => void,
   setCameraAngleY: (value: number) => void,
 ) {
-  const cameraOrigin = [0, 0, 0];
-
   function step() {
-    kernal(cameraOrigin, cameraAngleX, cameraAngleY);
+    // update camera
     cameraAngleX = (cameraAngleX + mouseX) % 360;
-    setCameraAngleX(cameraAngleX);
     cameraAngleY = mathClamp(cameraAngleY + mouseY, -45, 45);
-    setCameraAngleY(cameraAngleY);
     mouseX = 0;
     mouseY = 0;
+
+    cameraOrigin = vecAdd(
+      cameraOrigin,
+      vecMultiplyNum(getMoveVector(), moveMultiplier),
+    );
+
+    // render graphics
+    kernal(cameraOrigin, cameraAngleX, cameraAngleY);
+
+    // set game info for React UI
+    setCameraAngleX(cameraAngleX);
+    setCameraAngleY(cameraAngleY);
     window.requestAnimationFrame(step);
   }
   step();
-}
-
-function updatePosition(e: MouseEvent) {
-  mouseX += e.movementX * mouseSensitivity;
-  mouseY += e.movementY * mouseSensitivity;
 }
 
 function mathClamp(num: number, min: number, max: number): number {

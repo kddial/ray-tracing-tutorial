@@ -69,7 +69,10 @@ export function vecLengthSquared(vec: number[]): number {
 
 export function vecUnit(vec: number[]): number[] {
   const dot = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
-  const length = Math.sqrt(dot);
+  let length = Math.sqrt(dot);
+  if (length === 0) {
+    length = 1;
+  }
   return [vec[0] / length, vec[1] / length, vec[2] / length];
 }
 
