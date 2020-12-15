@@ -1,6 +1,6 @@
 import { canvasMainGpu } from './canvas-main-gpu';
-import { getMoveVector } from './key-press';
-import { vecAdd, vecMultiplyNum } from './vector-functions';
+import keyPress from './key-press';
+import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 
 const moveMultiplier = 0.2;
 const mouseSensitivity = 0.5;
@@ -73,4 +73,29 @@ export function step(
 
 function mathClamp(num: number, min: number, max: number): number {
   return num <= min ? min : num >= max ? max : num;
+}
+
+function getMoveVector() {
+  // camera origin angle is facing -x
+  // in clockwise order, -x, -z, x, z  === W N E S
+  // forward is -x
+  // backward is +x
+  // left is +z
+  // right is -z
+  const moveVector = [0, 0, 0];
+  const x = 0;
+  const z = 2;
+  if (keyPress['w']) {
+    moveVector[x] = -1;
+  }
+  if (keyPress['s']) {
+    moveVector[x] = 1;
+  }
+  if (keyPress['a']) {
+    moveVector[z] = +1;
+  }
+  if (keyPress['d']) {
+    moveVector[z] = -1;
+  }
+  return vecUnit(moveVector);
 }
