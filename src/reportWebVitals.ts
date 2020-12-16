@@ -1,3 +1,5 @@
+// can delete? Came from create-react-app
+
 import { ReportHandler } from 'web-vitals';
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
