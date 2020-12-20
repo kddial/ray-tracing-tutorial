@@ -9,6 +9,14 @@ let mouseY = 0;
 let cameraAngleX = 0; // in degrees
 let cameraAngleY = 0; // in degrees
 let cameraOrigin = [0, 0, 0];
+const sphereEntities = [
+  // radius, center x, y, z
+  [0.5, -10, 0, -4],
+  [0.5, -10, 0, 0],
+  [0.5, -10.5, 0, 0],
+  [0.5, 0, 0, -4],
+  [0.5, 0, 0, -5],
+];
 
 export function setup(
   canvas: HTMLCanvasElement,
@@ -60,7 +68,14 @@ export function step(
     );
 
     // render graphics
-    kernal(cameraOrigin, cameraAngleX, cameraAngleY);
+
+    kernal(
+      cameraOrigin,
+      cameraAngleX,
+      cameraAngleY,
+      sphereEntities,
+      sphereEntities.length,
+    );
 
     // set game info for React UI
     setUICameraAngleX(cameraAngleX);

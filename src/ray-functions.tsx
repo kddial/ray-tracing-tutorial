@@ -41,14 +41,12 @@ export function raySkyColor(rayDirection: number[]): number[] {
 export function rayColor(
   rayOrigin: number[],
   rayDirection: number[],
+  sphereT: number,
+  sphereCenter: number[],
 ): number[] {
-  const sphereCenter = [-10, 0, -4];
-  const sphereRadius = 0.5;
-
-  const t = hitSphere(rayOrigin, rayDirection, sphereCenter, sphereRadius);
-  if (t > 0) {
+  if (sphereT > 0) {
     const normal = vecUnit(
-      vecSubtract(rayAt(rayOrigin, rayDirection, t), sphereCenter),
+      vecSubtract(rayAt(rayOrigin, rayDirection, sphereT), sphereCenter),
     );
     return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
   }

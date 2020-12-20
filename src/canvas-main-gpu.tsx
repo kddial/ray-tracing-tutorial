@@ -27,7 +27,13 @@ export function canvasMainGpu(canvasRef) {
   return kernal;
 }
 
-function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY) {
+function kernalFunction(
+  cameraOriginRaw,
+  cameraAngleX,
+  cameraAngleY,
+  sphereEntities,
+  numSphereEntities,
+) {
   // constants
   const PI = 3.1415926535897932385;
 
@@ -87,7 +93,33 @@ function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY) {
     cameraOrigin,
   );
 
-  const canvasColor = rayColor(cameraOrigin, rayDirection);
+  // cycle through sphere entities
+  let nearestSphereT = -1;
+  let nearestSphereCenter = [0, 0, 0];
+  for (let ii = 0; ii < numSphereEntities; ii++) {
+    const sphereRadius = sphereEntities[ii][0];
+    const sphereCenter = [
+      sphereEntities[ii][1],
+      sphereEntities[ii][2],
+      sphereEntities[ii][3],
+    ];
+    const t = hitSphere(cameraOrigin, rayDirection, sphereCenter, sphereRadius);
+    if (t > 0) {
+      if (
+        nearestSphereT === -1 ||
+        (nearestSphereT !== -1 && t < nearestSphereT)
+      ) {
+        nearestSphereT = t;
+        nearestSphereCenter = sphereCenter;
+      }
+    }
+  }
 
+  const canvasColor = rayColor(
+    cameraOrigin,
+    rayDirection,
+    nearestSphereT,
+    nearestSphereCenter,
+  );
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }
