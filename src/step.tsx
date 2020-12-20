@@ -9,14 +9,22 @@ let mouseY = 0;
 let cameraAngleX = 0; // in degrees
 let cameraAngleY = 0; // in degrees
 let cameraOrigin = [0, 0, 0];
+
 const sphereEntities = [
   // radius, center x, y, z
   [0.5, -10, 0, -4],
-  [0.5, -10, 0, 0],
-  [0.5, -10.5, 0, 0],
-  [0.5, 0, 0, -4],
-  [0.5, 0, 0, -5],
 ];
+function createSpheresOnAxis() {
+  const radius = 0.05;
+  const distBetween = 0.1;
+  const num = 10;
+  for (let i = 0; i < num; i++) {
+    sphereEntities.push([radius, i * distBetween, 0, 0]);
+    sphereEntities.push([radius, 0, i * distBetween, 0]);
+    sphereEntities.push([radius, 0, 0, i * distBetween]);
+  }
+}
+createSpheresOnAxis();
 
 export function setup(
   canvas: HTMLCanvasElement,
