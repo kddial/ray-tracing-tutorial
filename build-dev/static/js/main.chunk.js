@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 200px;\n  height: 100px;\n  background: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n", "",{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA;;EAEE,YAAY;EACZ,SAAS;EACT,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,8BAA8B;EAC9B,iCAAiC;EACjC,0CAA0C;EAC1C,+BAA+B;EAC/B,kCAAkC;EAClC,4BAA4B;EAC5B,0BAA0B;EAC1B,wCAAwC;AAC1C;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,OAAO;EACP,YAAY;EACZ,aAAa;EACb,iBAAiB;EACjB,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,SAAS;AACX","sourcesContent":["html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 200px;\n  height: 100px;\n  background: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 250px;\n  height: 100px;\n  background: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n", "",{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA;;EAEE,YAAY;EACZ,SAAS;EACT,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,8BAA8B;EAC9B,iCAAiC;EACjC,0CAA0C;EAC1C,+BAA+B;EAC/B,kCAAkC;EAClC,4BAA4B;EAC5B,0BAA0B;EAC1B,wCAAwC;AAC1C;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,OAAO;EACP,YAAY;EACZ,aAAa;EACb,iBAAiB;EACjB,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,SAAS;AACX","sourcesContent":["html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 250px;\n  height: 100px;\n  background: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -104,7 +104,7 @@ function AppMain() {
         lineNumber: 37,
         columnNumber: 9
       }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Camera Origin: ", Math.round(uiCameraOrigin[0]), ",", ' ', Math.round(uiCameraOrigin[1]), ", ", Math.round(uiCameraOrigin[2])]
+        children: ["Camera Origin: ", stringifyVectors(uiCameraOrigin)]
       }, void 0, true, {
         fileName: _jsxFileName,
         lineNumber: 38,
@@ -125,6 +125,14 @@ function AppMain() {
 _s(AppMain, "rbK9cQ7UIf+mDY0sqHAIbpYB+kY=");
 
 _c = AppMain;
+
+function stringifyVectors(vec) {
+  return `${roundTwoDec(vec[0])}, ${roundTwoDec(vec[1])}, ${roundTwoDec(vec[2])}`;
+}
+
+function roundTwoDec(floatNum) {
+  return Math.round(floatNum * 100) / 100;
+}
 
 var _c;
 
@@ -249,7 +257,7 @@ function canvasMainGpu(canvasRef) {
   return kernal;
 }
 
-function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY) {
+function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntities, numSphereEntities) {
   // constants
   const PI = 3.1415926535897932385; // canvas
 
@@ -280,8 +288,25 @@ function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY) {
   const j = this.thread.y;
   const s = vecMultiplyNum(cameraHorizontal, i / (canvasWidth - 1));
   const t = vecMultiplyNum(cameraVertical, j / (canvasHeight - 1));
-  const rayDirection = vecSubtract(vecAdd(vecAdd(lowerLeftCameraPlane, s), t), cameraOrigin);
-  const canvasColor = rayColor(cameraOrigin, rayDirection);
+  const rayDirection = vecSubtract(vecAdd(vecAdd(lowerLeftCameraPlane, s), t), cameraOrigin); // cycle through sphere entities
+
+  let nearestSphereT = -1;
+  let nearestSphereCenter = [0, 0, 0];
+
+  for (let ii = 0; ii < numSphereEntities; ii++) {
+    const sphereRadius = sphereEntities[ii][0];
+    const sphereCenter = [sphereEntities[ii][1], sphereEntities[ii][2], sphereEntities[ii][3]];
+    const t = hitSphere(cameraOrigin, rayDirection, sphereCenter, sphereRadius);
+
+    if (t > 0) {
+      if (nearestSphereT === -1 || nearestSphereT !== -1 && t < nearestSphereT) {
+        nearestSphereT = t;
+        nearestSphereCenter = sphereCenter;
+      }
+    }
+  }
+
+  const canvasColor = rayColor(cameraOrigin, rayDirection, nearestSphereT, nearestSphereCenter);
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }
 
@@ -719,13 +744,9 @@ function raySkyColor(rayDirection) {
   const color2 = vecMultiplyNum([0.5, 0.7, 1.0], t);
   return vecAdd(color1, color2);
 }
-function rayColor(rayOrigin, rayDirection) {
-  const sphereCenter = [-10, 0, -4];
-  const sphereRadius = 0.5;
-  const t = hitSphere(rayOrigin, rayDirection, sphereCenter, sphereRadius);
-
-  if (t > 0) {
-    const normal = vecUnit(vecSubtract(rayAt(rayOrigin, rayDirection, t), sphereCenter));
+function rayColor(rayOrigin, rayDirection, sphereT, sphereCenter) {
+  if (sphereT > 0) {
+    const normal = vecUnit(vecSubtract(rayAt(rayOrigin, rayDirection, sphereT), sphereCenter));
     return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
   }
 
@@ -831,7 +852,7 @@ __webpack_require__.$Refresh$.setup(module.i);
 
 
 
-const moveMultiplier = 0.2;
+const moveMultiplier = 0.1;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
@@ -839,7 +860,23 @@ let cameraAngleX = 0; // in degrees
 
 let cameraAngleY = 0; // in degrees
 
-let cameraOrigin = [0, 0, 0];
+let cameraOrigin = [2, 0.5, 2];
+const sphereEntities = [// radius, center x, y, z
+[0.5, -10, 0, -4]];
+
+function createSpheresOnAxis() {
+  const radius = 0.05;
+  const distBetween = 0.1;
+  const num = 10;
+
+  for (let i = 0; i < num; i++) {
+    sphereEntities.push([radius, i * distBetween, 0, 0]);
+    sphereEntities.push([radius, 0, i * distBetween, 0]);
+    sphereEntities.push([radius, 0, 0, i * distBetween]);
+  }
+}
+
+createSpheresOnAxis();
 function setup(canvas, setIsLocked) {
   // mouse lock
   canvas.onclick = () => {
@@ -877,7 +914,7 @@ function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
     mouseY = 0;
     cameraOrigin = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecAdd"])(cameraOrigin, Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecMultiplyNum"])(getMoveVector(), moveMultiplier)); // render graphics
 
-    kernal(cameraOrigin, cameraAngleX, cameraAngleY); // set game info for React UI
+    kernal(cameraOrigin, cameraAngleX, cameraAngleY, sphereEntities, sphereEntities.length); // set game info for React UI
 
     setUICameraAngleX(cameraAngleX);
     setUICameraAngleY(cameraAngleY);
@@ -912,22 +949,23 @@ function getMoveVector() {
   }
 
   if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['a']) {
-    moveVector[z] = -1;
-  }
-
-  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['d']) {
     moveVector[z] = 1;
   }
 
-  moveVector = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecUnit"])(moveVector); // rotate moveVector by cameraAngleX
+  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['d']) {
+    moveVector[z] = -1;
+  }
+
+  moveVector = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecUnit"])(moveVector); // rotate moveVector by cameraAngleX in counter-clockwise rotation
   // x' = x·cosθ - y·sinθ
-  // y' = x·sinθ - y·cosθ
+  // y' = x·sinθ + y·cosθ
+  // in our 3d space looking from birds-eye view, x-axis is x and z-axis is y.
 
   const oldX = moveVector[x];
   const oldZ = moveVector[z];
   const theta = cameraAngleX * Math.PI / 180;
   const newX = oldX * Math.cos(theta) - oldZ * Math.sin(theta);
-  const newZ = oldX * Math.sin(theta) - oldZ * Math.cos(theta);
+  const newZ = oldX * Math.sin(theta) + oldZ * Math.cos(theta);
   return [newX, 0, newZ];
 }
 
