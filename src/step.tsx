@@ -2,13 +2,13 @@ import { canvasMainGpu } from './canvas-main-gpu';
 import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 
-const moveMultiplier = 0.2;
+const moveMultiplier = 0.1;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
 let cameraAngleX = 0; // in degrees
 let cameraAngleY = 0; // in degrees
-let cameraOrigin = [2, 0, 2];
+let cameraOrigin = [2, 0.5, 2];
 
 const sphereEntities = [
   // radius, center x, y, z
