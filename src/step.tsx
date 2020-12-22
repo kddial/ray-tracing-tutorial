@@ -8,7 +8,7 @@ let mouseX = 0;
 let mouseY = 0;
 let cameraAngleX = 0; // in degrees
 let cameraAngleY = 0; // in degrees
-let cameraOrigin = [0, 0, 0];
+let cameraOrigin = [2, 0, 2];
 
 const sphereEntities = [
   // radius, center x, y, z
@@ -115,21 +115,22 @@ function getMoveVector() {
     moveVector[x] = 1;
   }
   if (keyPress['a']) {
-    moveVector[z] = -1;
+    moveVector[z] = 1;
   }
   if (keyPress['d']) {
-    moveVector[z] = 1;
+    moveVector[z] = -1;
   }
   moveVector = vecUnit(moveVector);
 
-  // rotate moveVector by cameraAngleX
+  // rotate moveVector by cameraAngleX in counter-clockwise rotation
   // x' = x·cosθ - y·sinθ
-  // y' = x·sinθ - y·cosθ
+  // y' = x·sinθ + y·cosθ
+  // in our 3d space looking from birds-eye view, x-axis is x and z-axis is y.
   const oldX = moveVector[x];
   const oldZ = moveVector[z];
   const theta = (cameraAngleX * Math.PI) / 180;
   const newX = oldX * Math.cos(theta) - oldZ * Math.sin(theta);
-  const newZ = oldX * Math.sin(theta) - oldZ * Math.cos(theta);
+  const newZ = oldX * Math.sin(theta) + oldZ * Math.cos(theta);
 
   return [newX, 0, newZ];
 }

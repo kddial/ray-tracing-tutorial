@@ -35,11 +35,18 @@ export default function AppMain() {
         <p>Canvas locked: {isLocked ? 'true' : 'false'}</p>
         <p>Camera AngleX: {uiCameraAngleX}</p>
         <p>Camera AngleY: {uiCameraAngleY}</p>
-        <p>
-          Camera Origin: {Math.round(uiCameraOrigin[0])},{' '}
-          {Math.round(uiCameraOrigin[1])}, {Math.round(uiCameraOrigin[2])}
-        </p>
+        <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
       </div>
     </div>
   );
+}
+
+function stringifyVectors(vec: number[]) {
+  return `${roundTwoDec(vec[0])}, ${roundTwoDec(vec[1])}, ${roundTwoDec(
+    vec[2],
+  )}`;
+}
+
+function roundTwoDec(floatNum: number) {
+  return Math.round(floatNum * 100) / 100;
 }
