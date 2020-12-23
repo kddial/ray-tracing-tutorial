@@ -84,17 +84,6 @@ export function vecMax(vec: number[]): number {
   return Math.max(Math.max(vec[0], vec[1]), vec[2]);
 }
 
-// export function vecToAngles() {
-//   return {
-//     theta: Math.atan2(this.z, this.x),
-//     phi: Math.asin(this.y / this.length()),
-//   };
-// }
-
-// export function vecAngleTo(a: Vector) {
-//   return Math.acos(this.dot(a) / (this.length() * a.length()));
-// }
-
 const returnTypeArray3 = (func: any) => {
   return [func, { returnType: 'Array(3)' }];
 };

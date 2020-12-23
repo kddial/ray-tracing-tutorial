@@ -100,7 +100,6 @@ export function step(
     );
 
     // render graphics
-
     kernal(
       cameraOrigin,
       cameraAngleX,
