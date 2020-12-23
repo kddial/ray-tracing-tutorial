@@ -34,11 +34,10 @@ canvas {
 
 .game-info {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 250px;
-  height: 100px;
-  background: white;
+  padding: 10px;
+  color: white;
   font-family: monospace;
   font-size: 12px;
 }

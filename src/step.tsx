@@ -1,7 +1,10 @@
+// @ts-nocheck
 import { canvasMainGpu } from './canvas-main-gpu';
 import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
+import Stats from 'stats.js';
 
+let fpsStats = new Stats();
 const moveMultiplier = 0.04;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
@@ -12,7 +15,7 @@ let cameraOrigin = [2, 0.5, 2];
 
 const sphereEntities = [
   // radius, center x, y, z
-  [0.5, -10, 0, -4],
+  [0.5, 0, 8, 0],
 ];
 function createSpheresOnAxis() {
   const radius = 0.05;
@@ -26,10 +29,30 @@ function createSpheresOnAxis() {
 }
 createSpheresOnAxis();
 
+function createSquareMap() {
+  const radius = 0.05;
+  const distBetween = 1.0;
+  const cornerDistance = 10;
+
+  for (let i = 0; i <= cornerDistance; i = i + distBetween) {
+    sphereEntities.push([radius, i, 0, 0]);
+    sphereEntities.push([radius, 0, 0, i]);
+    sphereEntities.push([radius, i, 0, i]);
+    sphereEntities.push([radius, cornerDistance, 0, i]);
+    sphereEntities.push([radius, i, 0, cornerDistance]);
+  }
+  sphereEntities.push([radius * 2, cornerDistance, 0, cornerDistance]);
+}
+createSquareMap();
+
 export function setup(
   canvas: HTMLCanvasElement,
   setIsLocked: (value: boolean) => void,
 ) {
+  // fps counter
+  fpsStats.showPanel(0);
+  document.body.appendChild(fpsStats.dom);
+
   // mouse lock
   canvas.onclick = () => {
     canvas.requestPointerLock();
@@ -64,6 +87,7 @@ export function step(
   setUICameraOrigin: (origin: number[]) => void,
 ) {
   function step() {
+    fpsStats.begin();
     // update camera
     cameraAngleX = (cameraAngleX + mouseX) % 360;
     cameraAngleY = mathClamp(cameraAngleY + mouseY, -45, 45);
@@ -89,6 +113,7 @@ export function step(
     setUICameraAngleX(cameraAngleX);
     setUICameraAngleY(cameraAngleY);
     setUICameraOrigin(cameraOrigin);
+    fpsStats.end();
     window.requestAnimationFrame(step);
   }
   step();
