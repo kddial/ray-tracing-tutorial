@@ -2,7 +2,7 @@ import { canvasMainGpu } from './canvas-main-gpu';
 import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 
-const moveMultiplier = 0.1;
+const moveMultiplier = 0.04;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
