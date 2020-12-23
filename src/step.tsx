@@ -9,9 +9,9 @@ const moveMultiplier = 0.04;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
-let cameraAngleX = 0; // in degrees
+let cameraAngleX = 50; // in degrees
 let cameraAngleY = 0; // in degrees
-let cameraOrigin = [2, 0.5, 2];
+let cameraOrigin = [14, 0.5, 14];
 
 const sphereEntities = [
   // radius, center x, y, z
