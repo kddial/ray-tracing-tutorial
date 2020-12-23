@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 250px;\n  height: 100px;\n  background: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n", "",{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA;;EAEE,YAAY;EACZ,SAAS;EACT,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,8BAA8B;EAC9B,iCAAiC;EACjC,0CAA0C;EAC1C,+BAA+B;EAC/B,kCAAkC;EAClC,4BAA4B;EAC5B,0BAA0B;EAC1B,wCAAwC;AAC1C;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,OAAO;EACP,YAAY;EACZ,aAAa;EACb,iBAAiB;EACjB,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,SAAS;AACX","sourcesContent":["html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 250px;\n  height: 100px;\n  background: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  padding: 10px;\n  color: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n", "",{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA;;EAEE,YAAY;EACZ,SAAS;EACT,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,8BAA8B;EAC9B,iCAAiC;EACjC,0CAA0C;EAC1C,+BAA+B;EAC/B,kCAAkC;EAClC,4BAA4B;EAC5B,0BAA0B;EAC1B,wCAAwC;AAC1C;;AAEA;EACE,kBAAkB;EAClB,SAAS;EACT,OAAO;EACP,aAAa;EACb,YAAY;EACZ,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,SAAS;AACX","sourcesContent":["html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  padding: 10px;\n  color: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -846,23 +846,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _canvas_main_gpu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./canvas-main-gpu */ "./src/canvas-main-gpu.tsx");
 /* harmony import */ var _key_press__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./key-press */ "./src/key-press.tsx");
 /* harmony import */ var _vector_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vector-functions */ "./src/vector-functions.tsx");
+/* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! stats.js */ "./node_modules/stats.js/build/stats.min.js");
+/* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(stats_js__WEBPACK_IMPORTED_MODULE_3__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
+// @ts-nocheck
 
 
 
-const moveMultiplier = 0.1;
+
+let fpsStats = new stats_js__WEBPACK_IMPORTED_MODULE_3___default.a();
+const moveMultiplier = 0.04;
 const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
-let cameraAngleX = 0; // in degrees
+let cameraAngleX = 50; // in degrees
 
 let cameraAngleY = 0; // in degrees
 
-let cameraOrigin = [2, 0.5, 2];
+let cameraOrigin = [14, 0.5, 14];
 const sphereEntities = [// radius, center x, y, z
-[0.5, -10, 0, -4]];
+[0.5, 0, 8, 0], // sun
+[100, 0, -100.5, -1], // world
+[0.5, 15, 0, 15] // sphere
+];
 
 function createSpheresOnAxis() {
   const radius = 0.05;
@@ -877,8 +885,29 @@ function createSpheresOnAxis() {
 }
 
 createSpheresOnAxis();
+
+function createSquareMap() {
+  const radius = 0.05;
+  const distBetween = 1.0;
+  const cornerDistance = 10;
+
+  for (let i = 0; i <= cornerDistance; i = i + distBetween) {
+    sphereEntities.push([radius, i, 0, 0]);
+    sphereEntities.push([radius, 0, 0, i]);
+    sphereEntities.push([radius, i, 0, i]);
+    sphereEntities.push([radius, cornerDistance, 0, i]);
+    sphereEntities.push([radius, i, 0, cornerDistance]);
+  }
+
+  sphereEntities.push([radius * 2, cornerDistance, 0, cornerDistance]);
+}
+
+createSquareMap();
 function setup(canvas, setIsLocked) {
-  // mouse lock
+  // fps counter
+  fpsStats.showPanel(0);
+  document.body.appendChild(fpsStats.dom); // mouse lock
+
   canvas.onclick = () => {
     canvas.requestPointerLock();
   };
@@ -907,7 +936,8 @@ function updatePosition(e) {
 
 function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
   function step() {
-    // update camera
+    fpsStats.begin(); // update camera
+
     cameraAngleX = (cameraAngleX + mouseX) % 360;
     cameraAngleY = mathClamp(cameraAngleY + mouseY, -45, 45);
     mouseX = 0;
@@ -919,6 +949,7 @@ function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
     setUICameraAngleX(cameraAngleX);
     setUICameraAngleY(cameraAngleY);
     setUICameraOrigin(cameraOrigin);
+    fpsStats.end();
     window.requestAnimationFrame(step);
   }
 
@@ -1138,15 +1169,7 @@ function vecMin(vec) {
 }
 function vecMax(vec) {
   return Math.max(Math.max(vec[0], vec[1]), vec[2]);
-} // export function vecToAngles() {
-//   return {
-//     theta: Math.atan2(this.z, this.x),
-//     phi: Math.asin(this.y / this.length()),
-//   };
-// }
-// export function vecAngleTo(a: Vector) {
-//   return Math.acos(this.dot(a) / (this.length() * a.length()));
-// }
+}
 
 const returnTypeArray3 = func => {
   return [func, {
