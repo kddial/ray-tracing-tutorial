@@ -76,22 +76,21 @@ export function rayColor(
 
   if (sphereT === -1 && planeT === -1) {
     return raySkyColor(rayDirection);
-  }
-  if (sphereT !== -1 && planeT === -1) {
+  } else if (sphereT !== -1 && planeT === -1) {
     nearestT = sphereT;
     nearestCenter = sphereCenter;
-  }
-  if (sphereT === -1 && planeT !== -1) {
+  } else if (sphereT === -1 && planeT !== -1) {
     nearestT = planeT;
     nearestCenter = planeCenter;
-  }
-
-  if (sphereT > planeT) {
+  } else if (sphereT > planeT) {
+    nearestT = planeT;
+    nearestCenter = planeCenter;
+  } else if (sphereT <= planeT) {
     nearestT = sphereT;
     nearestCenter = sphereCenter;
   } else {
-    nearestT = planeT;
-    nearestCenter = planeCenter;
+    // should never reach here
+    return [1, 0, 0];
   }
 
   const normal = vecUnit(
