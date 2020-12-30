@@ -46,6 +46,13 @@ function createSquareMap() {
 }
 createSquareMap();
 
+// TODO radius
+// centerx, y, z, normalx, y, z
+const planeEntities = [
+  [0, 0, 0, 0, 1, 0],
+  [0, 9, 0, 0, 1, 0],
+];
+
 export function setup(
   canvas: HTMLCanvasElement,
   setIsLocked: (value: boolean) => void,
@@ -107,6 +114,8 @@ export function step(
       cameraAngleY,
       sphereEntities,
       sphereEntities.length,
+      planeEntities,
+      planeEntities.length,
     );
 
     // set game info for React UI

@@ -36,7 +36,7 @@ export function hitPlane(
   planeCenter: number[],
   planeNormal: number[],
 ): number {
-  const radius = 20;
+  const radius = 20; // TODO: from definition
 
   const denominator = vecDot(planeNormal, rayDirection);
   if (denominator < 0.00000001 && denominator > -0.00000001) {

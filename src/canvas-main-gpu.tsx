@@ -33,6 +33,8 @@ function kernalFunction(
   cameraAngleY,
   sphereEntities,
   numSphereEntities,
+  planeEntities,
+  numPlaneEntities,
 ) {
   // constants
   const PI = 3.1415926535897932385;
@@ -119,26 +121,17 @@ function kernalFunction(
   let nearestPlaneT = -1;
   let nearestPlaneCenter = [0, 0, 0];
   let nearestPlaneNormal = [0, 0, 0];
-
-  let planeEntities = [
-    [0, 0, 0],
-    [0, 1, 0],
-  ];
-
-  for (let ii = 0; ii < 2; ii++) {
-    // const planeCenter = [
-    //   planeEntities[ii][0],
-    //   planeEntities[ii][1],
-    //   planeEntities[ii][2],
-    // ];
-    // ii++;
-    // const planeNormal = [
-    //   planeEntities[ii][0],
-    //   planeEntities[ii][1],
-    //   planeEntities[ii][2],
-    // ];
-    const planeCenter = [0, 0, 0];
-    const planeNormal = [0, 1, 0];
+  for (let jj = 0; jj < numPlaneEntities; jj++) {
+    const planeCenter = [
+      planeEntities[jj][0],
+      planeEntities[jj][1],
+      planeEntities[jj][2],
+    ];
+    const planeNormal = [
+      planeEntities[jj][3],
+      planeEntities[jj][4],
+      planeEntities[jj][5],
+    ];
 
     const t = hitPlane(cameraOrigin, rayDirection, planeCenter, planeNormal);
     if (t > 0) {
