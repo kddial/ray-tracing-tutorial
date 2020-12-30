@@ -46,11 +46,11 @@ function createSquareMap() {
 }
 createSquareMap();
 
-// TODO radius
-// centerx, y, z, normalx, y, z
+// radius, centerx, y, z, normalx, y, z
 const planeEntities = [
-  [0, 0, 0, 0, 1, 0],
-  [0, 9, 0, 0, 1, 0],
+  [20, 0, 0, 0, 0, 1, 0],
+  [5, 0, 9, 0, 0, 1, 0],
+  [2, 0, 0.9, 0, 0, 1, 0],
 ];
 
 export function setup(

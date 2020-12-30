@@ -121,24 +121,33 @@ function kernalFunction(
   let nearestPlaneT = -1;
   let nearestPlaneCenter = [0, 0, 0];
   let nearestPlaneNormal = [0, 0, 0];
+  let nearestPlaneRadius = 0;
   for (let jj = 0; jj < numPlaneEntities; jj++) {
+    const planeRadius = planeEntities[jj][0];
     const planeCenter = [
-      planeEntities[jj][0],
       planeEntities[jj][1],
       planeEntities[jj][2],
+      planeEntities[jj][3],
     ];
     const planeNormal = [
-      planeEntities[jj][3],
       planeEntities[jj][4],
       planeEntities[jj][5],
+      planeEntities[jj][6],
     ];
 
-    const t = hitPlane(cameraOrigin, rayDirection, planeCenter, planeNormal);
+    const t = hitPlane(
+      cameraOrigin,
+      rayDirection,
+      planeCenter,
+      planeNormal,
+      planeRadius,
+    );
     if (t > 0) {
       if (nearestPlaneT === -1 || (nearestPlaneT !== -1 && t < nearestPlaneT)) {
         nearestPlaneT = t;
         nearestPlaneCenter = planeCenter;
         nearestPlaneNormal = planeNormal;
+        nearestPlaneRadius = planeRadius;
       }
     }
   }
