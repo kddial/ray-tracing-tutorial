@@ -50,7 +50,7 @@ createSquareMap();
 const planeEntities = [
   [20, 0, 0, 0, 0, 1, 0],
   [5, 0, 9, 0, 0, 1, 0],
-  [2, 0, 0.9, 0, 0, 1, 0],
+  [1, 0, 0.9, 0, 0, 1, 0.4],
 ];
 
 export function setup(
