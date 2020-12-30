@@ -16,7 +16,6 @@ let cameraOrigin = [14, 0.5, 14];
 const sphereEntities = [
   // radius, center x, y, z
   [0.5, 0, 8, 0], // sun
-  [100, 0, -100.5, -1], // world
   [0.5, 15, 0, 15], // sphere
 ];
 function createSpheresOnAxis() {

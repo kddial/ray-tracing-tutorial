@@ -137,7 +137,7 @@ function kernalFunction(
     //   planeEntities[ii][1],
     //   planeEntities[ii][2],
     // ];
-    const planeCenter = [0, 0.9, 0];
+    const planeCenter = [0, 0, 0];
     const planeNormal = [0, 1, 0];
 
     const t = hitPlane(cameraOrigin, rayDirection, planeCenter, planeNormal);
