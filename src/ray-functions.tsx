@@ -30,6 +30,31 @@ export function hitSphere(
   }
 }
 
+export function hitPlane(
+  rayOrigin: number[],
+  rayDirection: number[],
+  planeCenter: number[],
+  planeNormal: number[],
+): number {
+  const radius = 10;
+
+  const denominator = vecDot(planeNormal, rayDirection);
+  if (denominator < 0.00000001) {
+    return -1;
+  } else {
+    const numerator = vecDot(vecSubtract(planeCenter, rayOrigin), planeNormal);
+    const t = numerator / denominator;
+    const point = vecAdd(vecMultiplyNum(rayDirection, t), rayOrigin);
+    const distCenter = vecSubtract(point, planeCenter);
+
+    if (vecDot(distCenter, distCenter) <= radius * radius) {
+      return t;
+    } else {
+      return -1;
+    }
+  }
+}
+
 export function raySkyColor(rayDirection: number[]): number[] {
   const unit_direction = vecUnit(rayDirection);
   const t = 0.5 * (unit_direction[1] + 1);
@@ -43,16 +68,37 @@ export function rayColor(
   rayDirection: number[],
   sphereT: number,
   sphereCenter: number[],
+  planeT: number,
+  planeCenter: number[],
 ): number[] {
-  if (sphereT > 0) {
-    const normal = vecUnit(
-      vecSubtract(rayAt(rayOrigin, rayDirection, sphereT), sphereCenter),
-    );
-    return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
+  let nearestT = -1;
+  let nearestCenter = [0, 0, 0];
+
+  if (sphereT === -1 && planeT === -1) {
+    return raySkyColor(rayDirection);
+  }
+  if (sphereT !== -1 && planeT === -1) {
+    nearestT = sphereT;
+    nearestCenter = sphereCenter;
+  }
+  if (sphereT === -1 && planeT !== -1) {
+    nearestT = planeT;
+    nearestCenter = planeCenter;
   }
 
-  return raySkyColor(rayDirection);
+  if (sphereT > planeT) {
+    nearestT = sphereT;
+    nearestCenter = sphereCenter;
+  } else {
+    nearestT = planeT;
+    nearestCenter = planeCenter;
+  }
+
+  const normal = vecUnit(
+    vecSubtract(rayAt(rayOrigin, rayDirection, nearestT), nearestCenter),
+  );
+  return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
 }
 
-export const rayFunctions = [rayAt, hitSphere, raySkyColor, rayColor];
+export const rayFunctions = [rayAt, hitSphere, raySkyColor, rayColor, hitPlane];
 export default rayFunctions;

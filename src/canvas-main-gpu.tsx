@@ -115,11 +115,48 @@ function kernalFunction(
     }
   }
 
+  // cycle through plane entities
+  let nearestPlaneT = -1;
+  let nearestPlaneCenter = [0, 0, 0];
+  let nearestPlaneNormal = [0, 0, 0];
+
+  let planeEntities = [
+    [0, 0, 0],
+    [0, 1, 0],
+  ];
+
+  for (let ii = 0; ii < 2; ii++) {
+    // const planeCenter = [
+    //   planeEntities[ii][0],
+    //   planeEntities[ii][1],
+    //   planeEntities[ii][2],
+    // ];
+    // ii++;
+    // const planeNormal = [
+    //   planeEntities[ii][0],
+    //   planeEntities[ii][1],
+    //   planeEntities[ii][2],
+    // ];
+    const planeCenter = [0, 0.9, 0];
+    const planeNormal = [0, 1, 0];
+
+    const t = hitPlane(cameraOrigin, rayDirection, planeCenter, planeNormal);
+    if (t > 0) {
+      if (nearestPlaneT === -1 || (nearestPlaneT !== -1 && t < nearestPlaneT)) {
+        nearestPlaneT = t;
+        nearestPlaneCenter = planeCenter;
+        nearestPlaneNormal = planeNormal;
+      }
+    }
+  }
+
   const canvasColor = rayColor(
     cameraOrigin,
     rayDirection,
     nearestSphereT,
     nearestSphereCenter,
+    nearestPlaneT,
+    nearestPlaneCenter,
   );
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }
