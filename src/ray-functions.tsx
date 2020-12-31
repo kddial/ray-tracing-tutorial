@@ -54,6 +54,61 @@ export function hitPlane(
   }
 }
 
+// boxMin is the lower left corner of box
+// boxMax is the upper right corner of box
+// Source: https://gamedev.stackexchange.com/questions/18436/most-efficient-aabb-vs-ray-collision-algorithms
+// Answer: https://gamedev.stackexchange.com/a/150467
+// Diagram: https://gamedev.stackexchange.com/a/39903
+export function hitBox(
+  rayOrigin: number[],
+  rayDirection: number[],
+  boxMin: number[],
+  boxMax: number[],
+): number {
+  const x = 0;
+  const y = 1;
+  const z = 2;
+
+  let t = -1;
+  const t1 = (boxMin[x] - rayOrigin[x]) * rayDirection[x];
+  const t2 = (boxMax[x] - rayOrigin[x]) * rayDirection[x];
+
+  const t3 = (boxMin[y] - rayOrigin[y]) * rayDirection[y];
+  const t4 = (boxMax[y] - rayOrigin[y]) * rayDirection[y];
+
+  const t5 = (boxMin[z] - rayOrigin[z]) * rayDirection[z];
+  const t6 = (boxMax[z] - rayOrigin[z]) * rayDirection[z];
+
+  const tmin = Math.max(
+    Math.max(Math.min(t1, t2), Math.min(t3, t4)),
+    Math.min(t5, t6),
+  );
+  const tmax = Math.min(
+    Math.min(Math.max(t1, t2), Math.max(t3, t4)),
+    Math.max(t5, t6),
+  );
+
+  // if tmax < 0, ray is intersecting AABB, but the whole AABB is behind us
+  if (tmax < 0) {
+    t = tmax;
+    return -1;
+  }
+
+  // if tmin > tmax, ray doesn't intersect AABB
+  if (tmin > tmax) {
+    t = tmax;
+    return -1;
+  }
+
+  // if tmin < 0 then the ray origin is inside of the AABB and tmin is behind the start of the ray so tmax is the first intersection
+  if (tmin < 0) {
+    t = tmax;
+  } else {
+    t = tmin;
+  }
+  return t;
+}
+
 export function raySkyColor(rayDirection: number[]): number[] {
   const unit_direction = vecUnit(rayDirection);
   const t = 0.5 * (unit_direction[1] + 1);
@@ -69,9 +124,14 @@ export function rayColor(
   sphereCenter: number[],
   planeT: number,
   planeCenter: number[],
+  nearestBoxT: number,
 ): number[] {
   let nearestT = -1;
   let nearestCenter = [0, 0, 0];
+
+  if (nearestBoxT > 0) {
+    return [1, 0, 0];
+  }
 
   if (sphereT === -1 && planeT === -1) {
     return raySkyColor(rayDirection);
@@ -98,5 +158,12 @@ export function rayColor(
   return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
 }
 
-export const rayFunctions = [rayAt, hitSphere, raySkyColor, rayColor, hitPlane];
+export const rayFunctions = [
+  rayAt,
+  hitSphere,
+  raySkyColor,
+  rayColor,
+  hitPlane,
+  hitBox,
+];
 export default rayFunctions;

@@ -35,6 +35,8 @@ function kernalFunction(
   numSphereEntities,
   planeEntities,
   numPlaneEntities,
+  boxEntities,
+  numBoxEntities,
 ) {
   // constants
   const PI = 3.1415926535897932385;
@@ -90,9 +92,8 @@ function kernalFunction(
   const s = vecMultiplyNum(cameraHorizontal, i / (canvasWidth - 1));
   const t = vecMultiplyNum(cameraVertical, j / (canvasHeight - 1));
 
-  const rayDirection = vecSubtract(
-    vecAdd(vecAdd(lowerLeftCameraPlane, s), t),
-    cameraOrigin,
+  const rayDirection = vecUnit(
+    vecSubtract(vecAdd(vecAdd(lowerLeftCameraPlane, s), t), cameraOrigin),
   );
 
   // cycle through sphere entities
@@ -118,7 +119,7 @@ function kernalFunction(
   }
 
   // cycle through plane entities
-  let nearestPlaneT = -1;
+  let nearestPlaneT = -1; // TODO: change value to infinity for easier if statement calculation for nearest T
   let nearestPlaneCenter = [0, 0, 0];
   let nearestPlaneNormal = [0, 0, 0];
   let nearestPlaneRadius = 0;
@@ -152,6 +153,24 @@ function kernalFunction(
     }
   }
 
+  // cycle through box entities
+  let nearestBoxT = -1;
+  let nearestBoxMin = [0, 0, 0];
+  let nearestBoxMax = [0, 0, 0];
+  for (let kk = 0; kk < numBoxEntities; kk++) {
+    const boxMin = [boxEntities[kk][0], boxEntities[kk][1], boxEntities[kk][2]];
+    const boxMax = [boxEntities[kk][3], boxEntities[kk][4], boxEntities[kk][5]];
+
+    const t = hitBox(cameraOrigin, rayDirection, boxMin, boxMax);
+    if (t > 0) {
+      if (nearestBoxT === -1 || (nearestBoxT !== -1 && t < nearestBoxT)) {
+        nearestBoxT = t;
+        nearestBoxMin = boxMin;
+        nearestBoxMax = boxMax;
+      }
+    }
+  }
+
   const canvasColor = rayColor(
     cameraOrigin,
     rayDirection,
@@ -159,6 +178,7 @@ function kernalFunction(
     nearestSphereCenter,
     nearestPlaneT,
     nearestPlaneCenter,
+    nearestBoxT,
   );
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }

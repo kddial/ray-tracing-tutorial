@@ -53,6 +53,9 @@ const planeEntities = [
   [1, 0, 0.9, 0, 0, 1, 0.4],
 ];
 
+// pointMin left bottom corner (AAA), pointMax right top corner (BBB)
+const boxEntities = [[4, 4, 4, 5, 5, 5]];
+
 export function setup(
   canvas: HTMLCanvasElement,
   setIsLocked: (value: boolean) => void,
@@ -116,6 +119,8 @@ export function step(
       sphereEntities.length,
       planeEntities,
       planeEntities.length,
+      boxEntities,
+      boxEntities.length,
     );
 
     // set game info for React UI
