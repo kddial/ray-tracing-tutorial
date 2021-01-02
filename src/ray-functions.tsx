@@ -125,31 +125,33 @@ export function rayColor(
   planeT: number,
   planeCenter: number[],
   nearestBoxT: number,
+  nearestBoxMin: number[],
 ): number[] {
   let nearestT = -1;
   let nearestCenter = [0, 0, 0];
 
   if (nearestBoxT > 0) {
-    return [1, 0, 0];
-  }
-
-  if (sphereT === -1 && planeT === -1) {
-    return raySkyColor(rayDirection);
-  } else if (sphereT !== -1 && planeT === -1) {
-    nearestT = sphereT;
-    nearestCenter = sphereCenter;
-  } else if (sphereT === -1 && planeT !== -1) {
-    nearestT = planeT;
-    nearestCenter = planeCenter;
-  } else if (sphereT > planeT) {
-    nearestT = planeT;
-    nearestCenter = planeCenter;
-  } else if (sphereT <= planeT) {
-    nearestT = sphereT;
-    nearestCenter = sphereCenter;
+    nearestT = nearestBoxT;
+    nearestCenter = nearestBoxMin;
   } else {
-    // should never reach here
-    return [1, 0, 0];
+    if (sphereT === -1 && planeT === -1) {
+      return raySkyColor(rayDirection);
+    } else if (sphereT !== -1 && planeT === -1) {
+      nearestT = sphereT;
+      nearestCenter = sphereCenter;
+    } else if (sphereT === -1 && planeT !== -1) {
+      nearestT = planeT;
+      nearestCenter = planeCenter;
+    } else if (sphereT > planeT) {
+      nearestT = planeT;
+      nearestCenter = planeCenter;
+    } else if (sphereT <= planeT) {
+      nearestT = sphereT;
+      nearestCenter = sphereCenter;
+    } else {
+      // should never reach here
+      return [1, 0, 0];
+    }
   }
 
   const normal = vecUnit(

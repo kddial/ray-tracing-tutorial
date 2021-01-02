@@ -179,6 +179,7 @@ function kernalFunction(
     nearestPlaneT,
     nearestPlaneCenter,
     nearestBoxT,
+    nearestBoxMin,
   );
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }
