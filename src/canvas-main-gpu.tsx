@@ -146,7 +146,6 @@ function kernalFunction(
   // cycle through box entities
   let nearestBoxT = LARGE_NUM;
   let nearestBoxMin = [0, 0, 0];
-  let nearestBoxMax = [0, 0, 0];
   for (let kk = 0; kk < numBoxEntities; kk++) {
     const boxMin = [boxEntities[kk][0], boxEntities[kk][1], boxEntities[kk][2]];
     const boxMax = [boxEntities[kk][3], boxEntities[kk][4], boxEntities[kk][5]];
@@ -155,7 +154,6 @@ function kernalFunction(
     if (t > 0 && t < nearestBoxT) {
       nearestBoxT = t;
       nearestBoxMin = boxMin;
-      nearestBoxMax = boxMax;
     }
   }
 
