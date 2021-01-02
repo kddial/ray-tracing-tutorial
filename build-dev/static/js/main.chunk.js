@@ -257,9 +257,11 @@ function canvasMainGpu(canvasRef) {
   return kernal;
 }
 
-function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntities, numSphereEntities) {
+function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntities, numSphereEntities, planeEntities, numPlaneEntities, boxEntities, numBoxEntities) {
   // constants
-  const PI = 3.1415926535897932385; // canvas
+  const PI = 3.1415926535897932385;
+  const LARGE_NUM = 999999999; // 9 nines
+  // canvas
 
   const canvasWidth = 256;
   const canvasHeight = 256; // camera
@@ -288,9 +290,9 @@ function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntit
   const j = this.thread.y;
   const s = vecMultiplyNum(cameraHorizontal, i / (canvasWidth - 1));
   const t = vecMultiplyNum(cameraVertical, j / (canvasHeight - 1));
-  const rayDirection = vecSubtract(vecAdd(vecAdd(lowerLeftCameraPlane, s), t), cameraOrigin); // cycle through sphere entities
+  const rayDirection = vecUnit(vecSubtract(vecAdd(vecAdd(lowerLeftCameraPlane, s), t), cameraOrigin)); // cycle through sphere entities
 
-  let nearestSphereT = -1;
+  let nearestSphereT = LARGE_NUM;
   let nearestSphereCenter = [0, 0, 0];
 
   for (let ii = 0; ii < numSphereEntities; ii++) {
@@ -298,15 +300,46 @@ function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntit
     const sphereCenter = [sphereEntities[ii][1], sphereEntities[ii][2], sphereEntities[ii][3]];
     const t = hitSphere(cameraOrigin, rayDirection, sphereCenter, sphereRadius);
 
-    if (t > 0) {
-      if (nearestSphereT === -1 || nearestSphereT !== -1 && t < nearestSphereT) {
-        nearestSphereT = t;
-        nearestSphereCenter = sphereCenter;
-      }
+    if (t > 0 && t < nearestSphereT) {
+      nearestSphereT = t;
+      nearestSphereCenter = sphereCenter;
+    }
+  } // cycle through plane entities
+
+
+  let nearestPlaneT = LARGE_NUM;
+  let nearestPlaneCenter = [0, 0, 0];
+
+  for (let jj = 0; jj < numPlaneEntities; jj++) {
+    const planeRadius = planeEntities[jj][0];
+    const planeCenter = [planeEntities[jj][1], planeEntities[jj][2], planeEntities[jj][3]];
+    const planeNormal = [planeEntities[jj][4], planeEntities[jj][5], planeEntities[jj][6]];
+    const t = hitPlane(cameraOrigin, rayDirection, planeCenter, planeNormal, planeRadius);
+
+    if (t > 0 && t < nearestPlaneT) {
+      nearestPlaneT = t;
+      nearestPlaneCenter = planeCenter;
+    }
+  } // cycle through box entities
+
+
+  let nearestBoxT = LARGE_NUM;
+  let nearestBoxMin = [0, 0, 0];
+  let nearestBoxMax = [0, 0, 0];
+
+  for (let kk = 0; kk < numBoxEntities; kk++) {
+    const boxMin = [boxEntities[kk][0], boxEntities[kk][1], boxEntities[kk][2]];
+    const boxMax = [boxEntities[kk][3], boxEntities[kk][4], boxEntities[kk][5]];
+    const t = hitBox(cameraOrigin, rayDirection, boxMin, boxMax);
+
+    if (t > 0 && t < nearestBoxT) {
+      nearestBoxT = t;
+      nearestBoxMin = boxMin;
+      nearestBoxMax = boxMax;
     }
   }
 
-  const canvasColor = rayColor(cameraOrigin, rayDirection, nearestSphereT, nearestSphereCenter);
+  const canvasColor = rayColor(cameraOrigin, rayDirection, nearestSphereT, nearestSphereCenter, nearestPlaneT, nearestPlaneCenter, nearestBoxT, nearestBoxMin);
   this.color(canvasColor[0], canvasColor[1], canvasColor[2]);
 }
 
@@ -705,13 +738,15 @@ if (true) {
 /*!*******************************!*\
   !*** ./src/ray-functions.tsx ***!
   \*******************************/
-/*! exports provided: rayAt, hitSphere, raySkyColor, rayColor, rayFunctions, default */
+/*! exports provided: rayAt, hitSphere, hitPlane, hitBox, raySkyColor, rayColor, rayFunctions, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rayAt", function() { return rayAt; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hitSphere", function() { return hitSphere; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hitPlane", function() { return hitPlane; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hitBox", function() { return hitBox; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "raySkyColor", function() { return raySkyColor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rayColor", function() { return rayColor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rayFunctions", function() { return rayFunctions; });
@@ -737,6 +772,63 @@ function hitSphere(rayOrigin, rayDirection, sphereCenter, radius) {
     return (-halfB - Math.sqrt(discriminant)) / a;
   }
 }
+function hitPlane(rayOrigin, rayDirection, planeCenter, planeNormal, planeRadius) {
+  const denominator = vecDot(planeNormal, rayDirection);
+
+  if (denominator < 0.00000001 && denominator > -0.00000001) {
+    return -1;
+  } else {
+    const numerator = vecDot(vecSubtract(planeCenter, rayOrigin), planeNormal);
+    const t = numerator / denominator;
+    const point = vecAdd(vecMultiplyNum(rayDirection, t), rayOrigin);
+    const distCenter = vecSubtract(point, planeCenter);
+
+    if (vecDot(distCenter, distCenter) <= planeRadius * planeRadius) {
+      return t;
+    } else {
+      return -1;
+    }
+  }
+} // boxMin is the lower left corner of box
+// boxMax is the upper right corner of box
+// Source: https://gamedev.stackexchange.com/questions/18436/most-efficient-aabb-vs-ray-collision-algorithms
+// Answer: https://gamedev.stackexchange.com/a/150467
+// Diagram: https://gamedev.stackexchange.com/a/39903
+
+function hitBox(rayOrigin, rayDirection, boxMin, boxMax) {
+  const x = 0;
+  const y = 1;
+  const z = 2;
+  let t = -1;
+  const t1 = (boxMin[x] - rayOrigin[x]) / rayDirection[x];
+  const t2 = (boxMax[x] - rayOrigin[x]) / rayDirection[x];
+  const t3 = (boxMin[y] - rayOrigin[y]) / rayDirection[y];
+  const t4 = (boxMax[y] - rayOrigin[y]) / rayDirection[y];
+  const t5 = (boxMin[z] - rayOrigin[z]) / rayDirection[z];
+  const t6 = (boxMax[z] - rayOrigin[z]) / rayDirection[z];
+  const tmin = Math.max(Math.max(Math.min(t1, t2), Math.min(t3, t4)), Math.min(t5, t6));
+  const tmax = Math.min(Math.min(Math.max(t1, t2), Math.max(t3, t4)), Math.max(t5, t6)); // if tmax < 0, ray is intersecting AABB, but the whole AABB is behind us
+
+  if (tmax < 0) {
+    t = tmax;
+    return -1;
+  } // if tmin > tmax, ray doesn't intersect AABB
+
+
+  if (tmin > tmax) {
+    t = tmax;
+    return -1;
+  } // if tmin < 0 then the ray origin is inside of the AABB and tmin is behind the start of the ray so tmax is the first intersection
+
+
+  if (tmin < 0) {
+    t = tmax;
+  } else {
+    t = tmin;
+  }
+
+  return t;
+}
 function raySkyColor(rayDirection) {
   const unit_direction = vecUnit(rayDirection);
   const t = 0.5 * (unit_direction[1] + 1);
@@ -744,15 +836,32 @@ function raySkyColor(rayDirection) {
   const color2 = vecMultiplyNum([0.5, 0.7, 1.0], t);
   return vecAdd(color1, color2);
 }
-function rayColor(rayOrigin, rayDirection, sphereT, sphereCenter) {
-  if (sphereT > 0) {
-    const normal = vecUnit(vecSubtract(rayAt(rayOrigin, rayDirection, sphereT), sphereCenter));
-    return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
+function rayColor(rayOrigin, rayDirection, sphereT, sphereCenter, planeT, planeCenter, boxT, boxMin) {
+  const LARGE_NUM = 999999999;
+  let nearestT = LARGE_NUM;
+  let nearestEntityOrigin = [0, 0, 0];
+
+  if (sphereT === LARGE_NUM && planeT === LARGE_NUM && boxT === LARGE_NUM) {
+    return raySkyColor(rayDirection);
   }
 
-  return raySkyColor(rayDirection);
+  nearestT = Math.min(Math.min(sphereT, planeT), boxT);
+
+  if (nearestT === sphereT) {
+    nearestT = sphereT;
+    nearestEntityOrigin = sphereCenter;
+  } else if (nearestT === planeT) {
+    nearestT = planeT;
+    nearestEntityOrigin = planeCenter;
+  } else if (nearestT === boxT) {
+    nearestT = boxT;
+    nearestEntityOrigin = boxMin;
+  }
+
+  const normal = vecUnit(vecSubtract(rayAt(rayOrigin, rayDirection, nearestT), nearestEntityOrigin));
+  return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
 }
-const rayFunctions = [rayAt, hitSphere, raySkyColor, rayColor];
+const rayFunctions = [rayAt, hitSphere, raySkyColor, rayColor, hitPlane, hitBox];
 /* harmony default export */ __webpack_exports__["default"] = (rayFunctions);
 
 const currentExports = __react_refresh_utils__.getModuleExports(module.i);
@@ -868,7 +977,6 @@ let cameraAngleY = 0; // in degrees
 let cameraOrigin = [14, 0.5, 14];
 const sphereEntities = [// radius, center x, y, z
 [0.5, 0, 8, 0], // sun
-[100, 0, -100.5, -1], // world
 [0.5, 15, 0, 15] // sphere
 ];
 
@@ -902,7 +1010,11 @@ function createSquareMap() {
   sphereEntities.push([radius * 2, cornerDistance, 0, cornerDistance]);
 }
 
-createSquareMap();
+createSquareMap(); // radius, centerx, y, z, normalx, y, z
+
+const planeEntities = [[20, 0, 0, 0, 0, 1, 0], [5, 0, 9, 0, 0, 1, 0], [1, 0, 0.9, 0, 0, 1, 0.4]]; // pointMin left bottom corner (AAA), pointMax right top corner (BBB)
+
+const boxEntities = [[4, 0, 0, 6, 2, 2]];
 function setup(canvas, setIsLocked) {
   // fps counter
   fpsStats.showPanel(0);
@@ -944,7 +1056,7 @@ function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
     mouseY = 0;
     cameraOrigin = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecAdd"])(cameraOrigin, Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecMultiplyNum"])(getMoveVector(), moveMultiplier)); // render graphics
 
-    kernal(cameraOrigin, cameraAngleX, cameraAngleY, sphereEntities, sphereEntities.length); // set game info for React UI
+    kernal(cameraOrigin, cameraAngleX, cameraAngleY, sphereEntities, sphereEntities.length, planeEntities, planeEntities.length, boxEntities, boxEntities.length); // set game info for React UI
 
     setUICameraAngleX(cameraAngleX);
     setUICameraAngleY(cameraAngleY);
