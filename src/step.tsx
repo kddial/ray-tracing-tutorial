@@ -177,7 +177,7 @@ function getMoveVector(cameraOrigin: number[]) {
 
   // jump and gravity
   if (keyPress[' ']) {
-    moveVector[y] = 2;
+    moveVector[y] = 1;
   } else {
     if (cameraOrigin[y] > CAMERA_INIT_Y) {
       moveVector[y] = -1;

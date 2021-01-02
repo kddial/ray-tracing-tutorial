@@ -1113,7 +1113,7 @@ function getMoveVector(cameraOrigin) {
   moveVector[z] = newZ; // jump and gravity
 
   if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"][' ']) {
-    moveVector[y] = 2;
+    moveVector[y] = 1;
   } else {
     if (cameraOrigin[y] > CAMERA_INIT_Y) {
       moveVector[y] = -1;
