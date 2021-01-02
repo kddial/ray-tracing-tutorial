@@ -11,7 +11,8 @@ let mouseX = 0;
 let mouseY = 0;
 let cameraAngleX = 50; // in degrees
 let cameraAngleY = 0; // in degrees
-let cameraOrigin = [14, 0.5, 14];
+const CAMERA_INIT_Y = 0.5;
+let cameraOrigin = [14, CAMERA_INIT_Y, 14];
 
 const sphereEntities = [
   // radius, center x, y, z
@@ -101,13 +102,13 @@ export function step(
     fpsStats.begin();
     // update camera
     cameraAngleX = (cameraAngleX + mouseX) % 360;
-    cameraAngleY = mathClamp(cameraAngleY + mouseY, -45, 45);
+    cameraAngleY = mathClamp(cameraAngleY + mouseY, -85, 85);
     mouseX = 0;
     mouseY = 0;
 
     cameraOrigin = vecAdd(
       cameraOrigin,
-      vecMultiplyNum(getMoveVector(), moveMultiplier),
+      vecMultiplyNum(getMoveVector(cameraOrigin), moveMultiplier),
     );
 
     // render graphics
@@ -137,7 +138,7 @@ function mathClamp(num: number, min: number, max: number): number {
   return num <= min ? min : num >= max ? max : num;
 }
 
-function getMoveVector() {
+function getMoveVector(cameraOrigin: number[]) {
   // camera origin angle is facing -x
   // in clockwise order, -x, -z, x, z  === W N E S
   // forward is -x
@@ -146,6 +147,7 @@ function getMoveVector() {
   // right is -z
   let moveVector = [0, 0, 0];
   const x = 0;
+  const y = 1;
   const z = 2;
   if (keyPress['w']) {
     moveVector[x] = -1;
@@ -170,6 +172,17 @@ function getMoveVector() {
   const theta = (cameraAngleX * Math.PI) / 180;
   const newX = oldX * Math.cos(theta) - oldZ * Math.sin(theta);
   const newZ = oldX * Math.sin(theta) + oldZ * Math.cos(theta);
+  moveVector[x] = newX;
+  moveVector[z] = newZ;
 
-  return [newX, 0, newZ];
+  // jump and gravity
+  if (keyPress[' ']) {
+    moveVector[y] = 2;
+  } else {
+    if (cameraOrigin[y] > CAMERA_INIT_Y) {
+      moveVector[y] = -1;
+    }
+  }
+
+  return moveVector;
 }
