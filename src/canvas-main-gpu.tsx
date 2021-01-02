@@ -40,6 +40,7 @@ function kernalFunction(
 ) {
   // constants
   const PI = 3.1415926535897932385;
+  const LARGE_NUM = 999999999; // 9 nines
 
   // canvas
   const canvasWidth = 256;
@@ -97,7 +98,7 @@ function kernalFunction(
   );
 
   // cycle through sphere entities
-  let nearestSphereT = -1;
+  let nearestSphereT = LARGE_NUM;
   let nearestSphereCenter = [0, 0, 0];
   for (let ii = 0; ii < numSphereEntities; ii++) {
     const sphereRadius = sphereEntities[ii][0];
@@ -107,22 +108,15 @@ function kernalFunction(
       sphereEntities[ii][3],
     ];
     const t = hitSphere(cameraOrigin, rayDirection, sphereCenter, sphereRadius);
-    if (t > 0) {
-      if (
-        nearestSphereT === -1 ||
-        (nearestSphereT !== -1 && t < nearestSphereT)
-      ) {
-        nearestSphereT = t;
-        nearestSphereCenter = sphereCenter;
-      }
+    if (t > 0 && t < nearestSphereT) {
+      nearestSphereT = t;
+      nearestSphereCenter = sphereCenter;
     }
   }
 
   // cycle through plane entities
-  let nearestPlaneT = -1; // TODO: change value to infinity for easier if statement calculation for nearest T
+  let nearestPlaneT = LARGE_NUM;
   let nearestPlaneCenter = [0, 0, 0];
-  let nearestPlaneNormal = [0, 0, 0];
-  let nearestPlaneRadius = 0;
   for (let jj = 0; jj < numPlaneEntities; jj++) {
     const planeRadius = planeEntities[jj][0];
     const planeCenter = [
@@ -143,18 +137,14 @@ function kernalFunction(
       planeNormal,
       planeRadius,
     );
-    if (t > 0) {
-      if (nearestPlaneT === -1 || (nearestPlaneT !== -1 && t < nearestPlaneT)) {
-        nearestPlaneT = t;
-        nearestPlaneCenter = planeCenter;
-        nearestPlaneNormal = planeNormal;
-        nearestPlaneRadius = planeRadius;
-      }
+    if (t > 0 && t < nearestPlaneT) {
+      nearestPlaneT = t;
+      nearestPlaneCenter = planeCenter;
     }
   }
 
   // cycle through box entities
-  let nearestBoxT = -1;
+  let nearestBoxT = LARGE_NUM;
   let nearestBoxMin = [0, 0, 0];
   let nearestBoxMax = [0, 0, 0];
   for (let kk = 0; kk < numBoxEntities; kk++) {
@@ -162,12 +152,10 @@ function kernalFunction(
     const boxMax = [boxEntities[kk][3], boxEntities[kk][4], boxEntities[kk][5]];
 
     const t = hitBox(cameraOrigin, rayDirection, boxMin, boxMax);
-    if (t > 0) {
-      if (nearestBoxT === -1 || (nearestBoxT !== -1 && t < nearestBoxT)) {
-        nearestBoxT = t;
-        nearestBoxMin = boxMin;
-        nearestBoxMax = boxMax;
-      }
+    if (t > 0 && t < nearestBoxT) {
+      nearestBoxT = t;
+      nearestBoxMin = boxMin;
+      nearestBoxMax = boxMax;
     }
   }
 

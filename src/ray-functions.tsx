@@ -124,38 +124,32 @@ export function rayColor(
   sphereCenter: number[],
   planeT: number,
   planeCenter: number[],
-  nearestBoxT: number,
-  nearestBoxMin: number[],
+  boxT: number,
+  boxMin: number[],
 ): number[] {
-  let nearestT = -1;
-  let nearestCenter = [0, 0, 0];
+  const LARGE_NUM = 999999999;
+  let nearestT = LARGE_NUM;
+  let nearestEntityOrigin = [0, 0, 0];
 
-  if (nearestBoxT > 0) {
-    nearestT = nearestBoxT;
-    nearestCenter = nearestBoxMin;
-  } else {
-    if (sphereT === -1 && planeT === -1) {
-      return raySkyColor(rayDirection);
-    } else if (sphereT !== -1 && planeT === -1) {
-      nearestT = sphereT;
-      nearestCenter = sphereCenter;
-    } else if (sphereT === -1 && planeT !== -1) {
-      nearestT = planeT;
-      nearestCenter = planeCenter;
-    } else if (sphereT > planeT) {
-      nearestT = planeT;
-      nearestCenter = planeCenter;
-    } else if (sphereT <= planeT) {
-      nearestT = sphereT;
-      nearestCenter = sphereCenter;
-    } else {
-      // should never reach here
-      return [1, 0, 0];
-    }
+  if (sphereT === LARGE_NUM && planeT === LARGE_NUM && boxT === LARGE_NUM) {
+    return raySkyColor(rayDirection);
+  }
+
+  nearestT = Math.min(Math.min(sphereT, planeT), boxT);
+
+  if (nearestT === sphereT) {
+    nearestT = sphereT;
+    nearestEntityOrigin = sphereCenter;
+  } else if (nearestT === planeT) {
+    nearestT = planeT;
+    nearestEntityOrigin = planeCenter;
+  } else if (nearestT === boxT) {
+    nearestT = boxT;
+    nearestEntityOrigin = boxMin;
   }
 
   const normal = vecUnit(
-    vecSubtract(rayAt(rayOrigin, rayDirection, nearestT), nearestCenter),
+    vecSubtract(rayAt(rayOrigin, rayDirection, nearestT), nearestEntityOrigin),
   );
   return vecMultiplyNum(vecAddNum(normal, 1), 0.5);
 }
