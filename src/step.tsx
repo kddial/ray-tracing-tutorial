@@ -54,7 +54,7 @@ const planeEntities = [
 ];
 
 // pointMin left bottom corner (AAA), pointMax right top corner (BBB)
-const boxEntities = [[4, 4, 4, 5, 5, 5]];
+const boxEntities = [[0, 0, 0, 4, 4, 4]];
 
 export function setup(
   canvas: HTMLCanvasElement,
