@@ -325,7 +325,6 @@ function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntit
 
   let nearestBoxT = LARGE_NUM;
   let nearestBoxMin = [0, 0, 0];
-  let nearestBoxMax = [0, 0, 0];
 
   for (let kk = 0; kk < numBoxEntities; kk++) {
     const boxMin = [boxEntities[kk][0], boxEntities[kk][1], boxEntities[kk][2]];
@@ -335,7 +334,6 @@ function kernalFunction(cameraOriginRaw, cameraAngleX, cameraAngleY, sphereEntit
     if (t > 0 && t < nearestBoxT) {
       nearestBoxT = t;
       nearestBoxMin = boxMin;
-      nearestBoxMax = boxMax;
     }
   }
 
@@ -974,7 +972,8 @@ let cameraAngleX = 50; // in degrees
 
 let cameraAngleY = 0; // in degrees
 
-let cameraOrigin = [14, 0.5, 14];
+const CAMERA_INIT_Y = 0.5;
+let cameraOrigin = [14, CAMERA_INIT_Y, 14];
 const sphereEntities = [// radius, center x, y, z
 [0.5, 0, 8, 0], // sun
 [0.5, 15, 0, 15] // sphere
@@ -1051,10 +1050,10 @@ function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
     fpsStats.begin(); // update camera
 
     cameraAngleX = (cameraAngleX + mouseX) % 360;
-    cameraAngleY = mathClamp(cameraAngleY + mouseY, -45, 45);
+    cameraAngleY = mathClamp(cameraAngleY + mouseY, -85, 85);
     mouseX = 0;
     mouseY = 0;
-    cameraOrigin = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecAdd"])(cameraOrigin, Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecMultiplyNum"])(getMoveVector(), moveMultiplier)); // render graphics
+    cameraOrigin = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecAdd"])(cameraOrigin, Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecMultiplyNum"])(getMoveVector(cameraOrigin), moveMultiplier)); // render graphics
 
     kernal(cameraOrigin, cameraAngleX, cameraAngleY, sphereEntities, sphereEntities.length, planeEntities, planeEntities.length, boxEntities, boxEntities.length); // set game info for React UI
 
@@ -1072,7 +1071,7 @@ function mathClamp(num, min, max) {
   return num <= min ? min : num >= max ? max : num;
 }
 
-function getMoveVector() {
+function getMoveVector(cameraOrigin) {
   // camera origin angle is facing -x
   // in clockwise order, -x, -z, x, z  === W N E S
   // forward is -x
@@ -1081,6 +1080,7 @@ function getMoveVector() {
   // right is -z
   let moveVector = [0, 0, 0];
   const x = 0;
+  const y = 1;
   const z = 2;
 
   if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['w']) {
@@ -1109,7 +1109,18 @@ function getMoveVector() {
   const theta = cameraAngleX * Math.PI / 180;
   const newX = oldX * Math.cos(theta) - oldZ * Math.sin(theta);
   const newZ = oldX * Math.sin(theta) + oldZ * Math.cos(theta);
-  return [newX, 0, newZ];
+  moveVector[x] = newX;
+  moveVector[z] = newZ; // jump and gravity
+
+  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"][' ']) {
+    moveVector[y] = 2;
+  } else {
+    if (cameraOrigin[y] > CAMERA_INIT_Y) {
+      moveVector[y] = -1;
+    }
+  }
+
+  return moveVector;
 }
 
 const currentExports = __react_refresh_utils__.getModuleExports(module.i);
