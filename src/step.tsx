@@ -6,7 +6,6 @@ import Stats from 'stats.js';
 
 let fpsStats = new Stats();
 const moveMultiplier = 0.04;
-const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
 let cameraAngleX = 50; // in degrees
@@ -88,8 +87,8 @@ export function setup(
 }
 
 function updatePosition(e: MouseEvent) {
-  mouseX += e.movementX * mouseSensitivity;
-  mouseY += e.movementY * mouseSensitivity;
+  mouseX += e.movementX * window.mouseSensitivity;
+  mouseY += e.movementY * window.mouseSensitivity;
 }
 
 export function step(

@@ -12,8 +12,17 @@ export default function AppMain() {
   const [uiCameraAngleX, setUICameraAngleX] = useState(null);
   const [uiCameraAngleY, setUICameraAngleY] = useState(null);
   const [uiCameraOrigin, setUICameraOrigin] = useState([0, 0, 0]);
+  const [mouseSensitivity, setMouseSensitivity] = useState(0.2);
+
+  const setMouseSensitivityGlobal = (value) => {
+    setMouseSensitivity(value);
+    window.mouseSensitivity = value;
+  };
 
   useEffect(() => {
+    // init into global window space
+    setMouseSensitivityGlobal(mouseSensitivity);
+
     if (canvasRef1.current != null) {
       const canvas = canvasRef1.current || {};
       canvas.width = WIDTH;
@@ -32,9 +41,28 @@ export default function AppMain() {
         style={{ border: isLocked ? 'none' : '3px solid yellow' }}
       ></canvas>
       <div className="game-info">
+        <div>
+          <p style={{ display: 'inline', paddingRight: 10 }}>
+            Mouse Sensitivity: {roundDec(mouseSensitivity, 1)}
+          </p>
+          <button
+            onClick={() => {
+              setMouseSensitivityGlobal(mouseSensitivity - 0.1);
+            }}
+          >
+            -
+          </button>
+          <button
+            onClick={() => {
+              setMouseSensitivityGlobal(mouseSensitivity + 0.1);
+            }}
+          >
+            +
+          </button>
+        </div>
         <p>Canvas locked: {isLocked ? 'true' : 'false'}</p>
-        <p>Camera AngleX: {uiCameraAngleX}</p>
-        <p>Camera AngleY: {uiCameraAngleY}</p>
+        <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
+        <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
         <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
       </div>
     </div>
@@ -48,5 +76,9 @@ function stringifyVectors(vec: number[]) {
 }
 
 function roundTwoDec(floatNum: number) {
-  return Math.round(floatNum * 100) / 100;
+  return roundDec(floatNum, 2);
+}
+
+function roundDec(floatNum: number, decimalDigits: number) {
+  return Math.round(floatNum * 10 ** decimalDigits) / 10 ** decimalDigits;
 }
