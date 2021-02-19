@@ -62,7 +62,23 @@ function AppMain() {
   const [uiCameraAngleX, setUICameraAngleX] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null);
   const [uiCameraAngleY, setUICameraAngleY] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null);
   const [uiCameraOrigin, setUICameraOrigin] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([0, 0, 0]);
+  const [mouseSensitivity, setMouseSensitivity] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null);
+
+  const setMouseSensitivityUi = value => {
+    if (value <= 0.05) {
+      setMouseSensitivity(0.05);
+    } else {
+      setMouseSensitivity(value);
+    }
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    window.mouseSensitivity = mouseSensitivity;
+  }, [mouseSensitivity]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    // init into global window space
+    setMouseSensitivity(0.2);
+
     if (canvasRef1.current != null) {
       const canvas = canvasRef1.current || {};
       canvas.width = WIDTH;
@@ -81,48 +97,83 @@ function AppMain() {
       }
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 45,
       columnNumber: 7
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
       className: "game-info",
-      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
+          style: {
+            display: 'inline-block',
+            paddingRight: 10,
+            minWidth: 170
+          },
+          children: ["Mouse Sensitivity: ", roundTwoDec(mouseSensitivity)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 52,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
+          onClick: () => {
+            setMouseSensitivityUi(mouseSensitivity - 0.05);
+          },
+          children: "-"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 57,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
+          onClick: () => {
+            setMouseSensitivityUi(mouseSensitivity + 0.05);
+          },
+          children: "+"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 64,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 51,
+        columnNumber: 9
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
         children: ["Canvas locked: ", isLocked ? 'true' : 'false']
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 35,
+        lineNumber: 72,
         columnNumber: 9
       }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Camera AngleX: ", uiCameraAngleX]
+        children: ["Camera AngleX: ", roundTwoDec(uiCameraAngleX)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 36,
+        lineNumber: 73,
         columnNumber: 9
       }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Camera AngleY: ", uiCameraAngleY]
+        children: ["Camera AngleY: ", roundTwoDec(uiCameraAngleY)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 37,
+        lineNumber: 74,
         columnNumber: 9
       }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
         children: ["Camera Origin: ", stringifyVectors(uiCameraOrigin)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 38,
+        lineNumber: 75,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 34,
+      lineNumber: 50,
       columnNumber: 7
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 28,
+    lineNumber: 44,
     columnNumber: 5
   }, this);
 }
 
-_s(AppMain, "rbK9cQ7UIf+mDY0sqHAIbpYB+kY=");
+_s(AppMain, "dU5PPihM2AspLJASOwpMroj6V/4=");
 
 _c = AppMain;
 
@@ -131,7 +182,11 @@ function stringifyVectors(vec) {
 }
 
 function roundTwoDec(floatNum) {
-  return Math.round(floatNum * 100) / 100;
+  return roundDec(floatNum, 2);
+}
+
+function roundDec(floatNum, decimalDigits) {
+  return Math.round(floatNum * 10 ** decimalDigits) / 10 ** decimalDigits;
 }
 
 var _c;
@@ -965,7 +1020,6 @@ __webpack_require__.$Refresh$.setup(module.i);
 
 let fpsStats = new stats_js__WEBPACK_IMPORTED_MODULE_3___default.a();
 const moveMultiplier = 0.04;
-const mouseSensitivity = 0.5;
 let mouseX = 0;
 let mouseY = 0;
 let cameraAngleX = 50; // in degrees
@@ -1041,11 +1095,13 @@ function setup(canvas, setIsLocked) {
 }
 
 function updatePosition(e) {
-  mouseX += e.movementX * mouseSensitivity;
-  mouseY += e.movementY * mouseSensitivity;
+  mouseX += e.movementX * window.mouseSensitivity;
+  mouseY += e.movementY * window.mouseSensitivity;
 }
 
 function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
+  const shouldStopAnimate = window.location.search.indexOf('stop') >= 0;
+
   function step() {
     fpsStats.begin(); // update camera
 
@@ -1061,7 +1117,7 @@ function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
     setUICameraAngleY(cameraAngleY);
     setUICameraOrigin(cameraOrigin);
     fpsStats.end();
-    window.requestAnimationFrame(step);
+    shouldStopAnimate === false && window.requestAnimationFrame(step);
   }
 
   step();
