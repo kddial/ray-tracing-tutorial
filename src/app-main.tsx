@@ -12,16 +12,23 @@ export default function AppMain() {
   const [uiCameraAngleX, setUICameraAngleX] = useState(null);
   const [uiCameraAngleY, setUICameraAngleY] = useState(null);
   const [uiCameraOrigin, setUICameraOrigin] = useState([0, 0, 0]);
-  const [mouseSensitivity, setMouseSensitivity] = useState(0.2);
+  const [mouseSensitivity, setMouseSensitivity] = useState(null);
 
-  const setMouseSensitivityGlobal = (value) => {
-    setMouseSensitivity(value);
-    window.mouseSensitivity = value;
+  const setMouseSensitivityUi = (value) => {
+    if (value <= 0.05) {
+      setMouseSensitivity(0.05);
+    } else {
+      setMouseSensitivity(value);
+    }
   };
 
   useEffect(() => {
+    window.mouseSensitivity = mouseSensitivity;
+  }, [mouseSensitivity]);
+
+  useEffect(() => {
     // init into global window space
-    setMouseSensitivityGlobal(mouseSensitivity);
+    setMouseSensitivity(0.2);
 
     if (canvasRef1.current != null) {
       const canvas = canvasRef1.current || {};
@@ -43,20 +50,20 @@ export default function AppMain() {
       <div className="game-info">
         <div>
           <p
-            style={{ display: 'inline-block', paddingRight: 10, minWidth: 160 }}
+            style={{ display: 'inline-block', paddingRight: 10, minWidth: 170 }}
           >
-            Mouse Sensitivity: {roundDec(mouseSensitivity, 1)}
+            Mouse Sensitivity: {roundTwoDec(mouseSensitivity)}
           </p>
           <button
             onClick={() => {
-              setMouseSensitivityGlobal(mouseSensitivity - 0.1);
+              setMouseSensitivityUi(mouseSensitivity - 0.05);
             }}
           >
             -
           </button>
           <button
             onClick={() => {
-              setMouseSensitivityGlobal(mouseSensitivity + 0.1);
+              setMouseSensitivityUi(mouseSensitivity + 0.05);
             }}
           >
             +
