@@ -42,7 +42,9 @@ export default function AppMain() {
       ></canvas>
       <div className="game-info">
         <div>
-          <p style={{ display: 'inline', paddingRight: 10 }}>
+          <p
+            style={{ display: 'inline-block', paddingRight: 10, minWidth: 160 }}
+          >
             Mouse Sensitivity: {roundDec(mouseSensitivity, 1)}
           </p>
           <button

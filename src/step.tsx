@@ -97,6 +97,8 @@ export function step(
   setUICameraAngleY: (value: number) => void,
   setUICameraOrigin: (origin: number[]) => void,
 ) {
+  const shouldStopAnimate = window.location.search.indexOf('stop') >= 0;
+
   function step() {
     fpsStats.begin();
     // update camera
@@ -128,7 +130,7 @@ export function step(
     setUICameraAngleY(cameraAngleY);
     setUICameraOrigin(cameraOrigin);
     fpsStats.end();
-    window.requestAnimationFrame(step);
+    shouldStopAnimate === false && window.requestAnimationFrame(step);
   }
   step();
 }
