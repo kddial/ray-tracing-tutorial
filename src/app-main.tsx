@@ -1,6 +1,7 @@
 // @ts-nocheck
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { setup, step } from './step';
+import { shouldShowDebugInfo } from './url-params';
 
 // Configuration
 export const WIDTH = 256; // should match in kernalFunction
@@ -42,11 +43,6 @@ export default function AppMain() {
 
   return (
     <div className="canvas-container">
-      <canvas
-        id="canvas1"
-        ref={canvasRef1}
-        style={{ border: isLocked ? 'none' : '3px solid yellow' }}
-      ></canvas>
       <div className="game-info">
         <div>
           <p
@@ -69,11 +65,19 @@ export default function AppMain() {
             +
           </button>
         </div>
-        <p>Canvas locked: {isLocked ? 'true' : 'false'}</p>
-        <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
-        <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
-        <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
+        {shouldShowDebugInfo() && (
+          <React.Fragment>
+            <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
+            <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
+            <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
+          </React.Fragment>
+        )}
       </div>
+      <canvas
+        id="canvas1"
+        ref={canvasRef1}
+        style={{ border: isLocked ? 'none' : '3px solid yellow' }}
+      ></canvas>
     </div>
   );
 }

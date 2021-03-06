@@ -34,8 +34,8 @@ canvas {
 
 .game-info {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
+  right: 0;
   padding: 10px;
   color: white;
   font-family: monospace;

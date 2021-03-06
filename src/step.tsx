@@ -3,6 +3,7 @@ import { canvasMainGpu } from './canvas-main-gpu';
 import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 import Stats from 'stats.js';
+import { shouldStop } from './url-params';
 
 let fpsStats = new Stats();
 const moveMultiplier = 0.04;
@@ -97,7 +98,7 @@ export function step(
   setUICameraAngleY: (value: number) => void,
   setUICameraOrigin: (origin: number[]) => void,
 ) {
-  const shouldStopAnimate = window.location.search.indexOf('stop') >= 0;
+  const shouldStopAnimate = shouldStop();
 
   function step() {
     fpsStats.begin();
