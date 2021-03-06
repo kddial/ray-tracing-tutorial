@@ -295,7 +295,8 @@ __webpack_require__.$Refresh$.setup(module.i);
 
 function canvasMainGpu(canvasRef) {
   const gpu = new gpu_js__WEBPACK_IMPORTED_MODULE_1__["GPU"]({
-    mode: 'gpu',
+    mode: 'webgl',
+    // cannot use "gpu" since webgl2 is not supported on safari
     // mode: 'cpu', // debug in cpu mode
     canvas: canvasRef
   });
@@ -849,16 +850,16 @@ function hitPlane(rayOrigin, rayDirection, planeCenter, planeNormal, planeRadius
 // Diagram: https://gamedev.stackexchange.com/a/39903
 
 function hitBox(rayOrigin, rayDirection, boxMin, boxMax) {
-  const x = 0;
-  const y = 1;
-  const z = 2;
+  // x = 0;
+  // y = 1;
+  // z = 2;
   let t = -1;
-  const t1 = (boxMin[x] - rayOrigin[x]) / rayDirection[x];
-  const t2 = (boxMax[x] - rayOrigin[x]) / rayDirection[x];
-  const t3 = (boxMin[y] - rayOrigin[y]) / rayDirection[y];
-  const t4 = (boxMax[y] - rayOrigin[y]) / rayDirection[y];
-  const t5 = (boxMin[z] - rayOrigin[z]) / rayDirection[z];
-  const t6 = (boxMax[z] - rayOrigin[z]) / rayDirection[z];
+  const t1 = (boxMin[0] - rayOrigin[0]) / rayDirection[0];
+  const t2 = (boxMax[0] - rayOrigin[0]) / rayDirection[0];
+  const t3 = (boxMin[1] - rayOrigin[1]) / rayDirection[1];
+  const t4 = (boxMax[1] - rayOrigin[1]) / rayDirection[1];
+  const t5 = (boxMin[2] - rayOrigin[2]) / rayDirection[2];
+  const t6 = (boxMax[2] - rayOrigin[2]) / rayDirection[2];
   const tmin = Math.max(Math.max(Math.min(t1, t2), Math.min(t3, t4)), Math.min(t5, t6));
   const tmax = Math.min(Math.min(Math.max(t1, t2), Math.max(t3, t4)), Math.max(t5, t6)); // if tmax < 0, ray is intersecting AABB, but the whole AABB is behind us
 
@@ -1320,10 +1321,10 @@ function vecDot(vec1, vec2) {
   return vec1[0] * vec2[0] + vec1[1] * vec2[1] + vec1[2] * vec2[2];
 }
 function vecCross(vec1, vec2) {
-  const x = 0;
-  const y = 1;
-  const z = 2;
-  return [vec1[y] * vec2[z] - vec1[z] * vec2[y], vec1[z] * vec2[x] - vec1[x] * vec2[z], vec1[x] * vec2[y] - vec1[y] * vec2[x]];
+  // x = 0;
+  // y = 1;
+  // z = 2;
+  return [vec1[1] * vec2[2] - vec1[2] * vec2[1], vec1[2] * vec2[0] - vec1[0] * vec2[2], vec1[0] * vec2[1] - vec1[1] * vec2[0]];
 }
 function vecLength(vec) {
   const dot = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
