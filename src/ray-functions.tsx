@@ -65,19 +65,18 @@ export function hitBox(
   boxMin: number[],
   boxMax: number[],
 ): number {
-  const x = 0;
-  const y = 1;
-  const z = 2;
-
+  // x = 0;
+  // y = 1;
+  // z = 2;
   let t = -1;
-  const t1 = (boxMin[x] - rayOrigin[x]) / rayDirection[x];
-  const t2 = (boxMax[x] - rayOrigin[x]) / rayDirection[x];
+  const t1 = (boxMin[0] - rayOrigin[0]) / rayDirection[0];
+  const t2 = (boxMax[0] - rayOrigin[0]) / rayDirection[0];
 
-  const t3 = (boxMin[y] - rayOrigin[y]) / rayDirection[y];
-  const t4 = (boxMax[y] - rayOrigin[y]) / rayDirection[y];
+  const t3 = (boxMin[1] - rayOrigin[1]) / rayDirection[1];
+  const t4 = (boxMax[1] - rayOrigin[1]) / rayDirection[1];
 
-  const t5 = (boxMin[z] - rayOrigin[z]) / rayDirection[z];
-  const t6 = (boxMax[z] - rayOrigin[z]) / rayDirection[z];
+  const t5 = (boxMin[2] - rayOrigin[2]) / rayDirection[2];
+  const t6 = (boxMax[2] - rayOrigin[2]) / rayDirection[2];
 
   const tmin = Math.max(
     Math.max(Math.min(t1, t2), Math.min(t3, t4)),

@@ -7,7 +7,7 @@ import rayFunctions from './ray-functions';
 
 export function canvasMainGpu(canvasRef) {
   const gpu = new GPU({
-    mode: 'gpu',
+    mode: 'webgl', // cannot use "gpu" since webgl2 is not supported on safari
     // mode: 'cpu', // debug in cpu mode
     canvas: canvasRef,
   });

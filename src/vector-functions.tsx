@@ -47,13 +47,13 @@ export function vecDot(vec1: number[], vec2: number[]): number {
 }
 
 export function vecCross(vec1: number[], vec2: number[]): number[] {
-  const x = 0;
-  const y = 1;
-  const z = 2;
+  // x = 0;
+  // y = 1;
+  // z = 2;
   return [
-    vec1[y] * vec2[z] - vec1[z] * vec2[y],
-    vec1[z] * vec2[x] - vec1[x] * vec2[z],
-    vec1[x] * vec2[y] - vec1[y] * vec2[x],
+    vec1[1] * vec2[2] - vec1[2] * vec2[1],
+    vec1[2] * vec2[0] - vec1[0] * vec2[2],
+    vec1[0] * vec2[1] - vec1[1] * vec2[0],
   ];
 }
 
