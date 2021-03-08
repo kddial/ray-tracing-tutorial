@@ -57,10 +57,20 @@ p {
 
 .joystick-zone {
   position: relative;
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 50%;
-  background: rgba(0, 255, 0, 0.1);
   touch-action: none;
+  flex: 1;
+}
+
+.joystick-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#joystick-camera {
+  background: rgba(0, 0, 255, 0.2);
+}
+
+#joystick-movement {
+  background: rgba(255, 0, 0, 0.2);
 }

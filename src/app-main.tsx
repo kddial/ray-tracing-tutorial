@@ -46,9 +46,13 @@ export default function AppMain() {
 
   useEffect(() => {
     if (isMobile) {
-      var dynamic = nipplejs.create({
-        zone: document.getElementById('joystick-zone'),
+      const joystickCamera = nipplejs.create({
+        zone: document.getElementById('joystick-camera'),
         color: 'blue',
+      });
+      const joystickMovement = nipplejs.create({
+        zone: document.getElementById('joystick-movement'),
+        color: 'red',
       });
     }
   }, [isMobile]);
@@ -96,7 +100,12 @@ export default function AppMain() {
           style={{ border: isLocked ? 'none' : '3px solid yellow' }}
         ></canvas>
       </div>
-      {isMobile && <div id="joystick-zone" className="joystick-zone" />}
+      {isMobile && (
+        <div className="joystick-container">
+          <div id="joystick-camera" className="joystick-zone" />
+          <div id="joystick-movement" className="joystick-zone" />
+        </div>
+      )}
     </div>
   );
 }
