@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { setup, step } from './step';
 import { shouldShowDebugInfo } from './url-params';
+import nipplejs from 'nipplejs';
+import { useMobileDevice } from './mobile-device-hook';
 
 // Configuration
 export const WIDTH = 256; // should match in kernalFunction
@@ -14,6 +16,7 @@ export default function AppMain() {
   const [uiCameraAngleY, setUICameraAngleY] = useState(null);
   const [uiCameraOrigin, setUICameraOrigin] = useState([0, 0, 0]);
   const [mouseSensitivity, setMouseSensitivity] = useState(null);
+  const { isMobile } = useMobileDevice();
 
   const setMouseSensitivityUi = (value) => {
     if (value <= 0.05) {
@@ -41,43 +44,59 @@ export default function AppMain() {
     }
   }, []);
 
+  useEffect(() => {
+    if (isMobile) {
+      var dynamic = nipplejs.create({
+        zone: document.getElementById('joystick-zone'),
+        color: 'blue',
+      });
+    }
+  }, [isMobile]);
+
   return (
-    <div className="canvas-container">
-      <div className="game-info">
-        <div>
-          <p
-            style={{ display: 'inline-block', paddingRight: 10, minWidth: 170 }}
-          >
-            Mouse Sensitivity: {roundTwoDec(mouseSensitivity)}
-          </p>
-          <button
-            onClick={() => {
-              setMouseSensitivityUi(mouseSensitivity - 0.05);
-            }}
-          >
-            -
-          </button>
-          <button
-            onClick={() => {
-              setMouseSensitivityUi(mouseSensitivity + 0.05);
-            }}
-          >
-            +
-          </button>
+    <div className="app-container">
+      <div className="canvas-container">
+        <div className="game-info">
+          <div>
+            <p
+              style={{
+                display: 'inline-block',
+                paddingRight: 10,
+                minWidth: 170,
+              }}
+            >
+              Mouse Sensitivity: {roundTwoDec(mouseSensitivity)}
+            </p>
+            <button
+              onClick={() => {
+                setMouseSensitivityUi(mouseSensitivity - 0.05);
+              }}
+            >
+              -
+            </button>
+            <button
+              onClick={() => {
+                setMouseSensitivityUi(mouseSensitivity + 0.05);
+              }}
+            >
+              +
+            </button>
+          </div>
+          {shouldShowDebugInfo() && (
+            <React.Fragment>
+              <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
+              <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
+              <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
+            </React.Fragment>
+          )}
         </div>
-        {shouldShowDebugInfo() && (
-          <React.Fragment>
-            <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
-            <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
-            <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
-          </React.Fragment>
-        )}
+        <canvas
+          id="canvas1"
+          ref={canvasRef1}
+          style={{ border: isLocked ? 'none' : '3px solid yellow' }}
+        ></canvas>
       </div>
-      <canvas
-        id="canvas1"
-        ref={canvasRef1}
-        style={{ border: isLocked ? 'none' : '3px solid yellow' }}
-      ></canvas>
+      {isMobile && <div id="joystick-zone" className="joystick-zone" />}
     </div>
   );
 }
