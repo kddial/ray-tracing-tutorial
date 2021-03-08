@@ -86,8 +86,8 @@ export default function AppMain() {
       </div>
       {window.isMobile && (
         <div className="joystick-container">
-          <div id="joystick-camera" className="joystick-zone" />
           <div id="joystick-movement" className="joystick-zone" />
+          <div id="joystick-camera" className="joystick-zone" />
         </div>
       )}
     </div>

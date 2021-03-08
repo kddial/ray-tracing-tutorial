@@ -1,17 +1,17 @@
 // @ts-nocheck
 import nipplejs from 'nipplejs';
 
-export let joystickCamera;
 export let joystickMovement;
+export let joystickCamera;
 
 export function joystickSetup() {
-  joystickCamera = nipplejs.create({
-    zone: document.getElementById('joystick-camera'),
+  joystickMovement = nipplejs.create({
+    zone: document.getElementById('joystick-movement'),
     color: 'blue',
   });
 
-  joystickMovement = nipplejs.create({
-    zone: document.getElementById('joystick-movement'),
-    color: 'red',
+  joystickCamera = nipplejs.create({
+    zone: document.getElementById('joystick-camera'),
+    color: 'green',
   });
 }
