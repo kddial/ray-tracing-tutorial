@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  padding: 10px;\n  color: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n", "",{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA;;EAEE,YAAY;EACZ,SAAS;EACT,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,8BAA8B;EAC9B,iCAAiC;EACjC,0CAA0C;EAC1C,+BAA+B;EAC/B,kCAAkC;EAClC,4BAA4B;EAC5B,0BAA0B;EAC1B,wCAAwC;AAC1C;;AAEA;EACE,kBAAkB;EAClB,SAAS;EACT,OAAO;EACP,aAAa;EACb,YAAY;EACZ,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,SAAS;AACX","sourcesContent":["html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n}\n\n.game-info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  padding: 10px;\n  color: white;\n  font-family: monospace;\n  font-size: 12px;\n}\n\np {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.app-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  cursor: pointer;\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n  -webkit-user-select: none;\n          user-select: none;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  right: 0;\n  padding: 10px;\n  color: white;\n  font-family: monospace;\n  font-size: 12px;\n  -webkit-user-select: none;\n          user-select: none;\n}\n\np {\n  margin: 0;\n}\n\n.joystick-zone {\n  position: relative;\n  touch-action: none;\n  flex: 1 1;\n  -webkit-user-select: none;\n          user-select: none;\n}\n\n.joystick-container {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}\n\n#joystick-movement {\n  background: rgba(0, 0, 255, 0.2);\n}\n\n#joystick-camera {\n  background: rgba(0, 255, 0, 0.2);\n}\n\n#fps-stats {\n  position: absolute;\n  -webkit-user-select: none;\n          user-select: none;\n}\n", "",{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA;;EAEE,YAAY;EACZ,SAAS;EACT,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,gBAAgB;EAChB,8BAA8B;EAC9B,iCAAiC;EACjC,0CAA0C;EAC1C,+BAA+B;EAC/B,kCAAkC;EAClC,4BAA4B;EAC5B,0BAA0B;EAC1B,wCAAwC;EACxC,yBAAiB;UAAjB,iBAAiB;AACnB;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,QAAQ;EACR,aAAa;EACb,YAAY;EACZ,sBAAsB;EACtB,eAAe;EACf,yBAAiB;UAAjB,iBAAiB;AACnB;;AAEA;EACE,SAAS;AACX;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;EAClB,SAAO;EACP,yBAAiB;UAAjB,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,WAAW;EACX,YAAY;AACd;;AAEA;EACE,gCAAgC;AAClC;;AAEA;EACE,gCAAgC;AAClC;;AAEA;EACE,kBAAkB;EAClB,yBAAiB;UAAjB,iBAAiB;AACnB","sourcesContent":["html,\nbody {\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n}\n\n#root {\n  width: 100%;\n  height: 100%;\n}\n\n.app-container {\n  width: 100%;\n  height: 100%;\n  background: black;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\ncanvas {\n  cursor: pointer;\n  width: 100%;\n  max-width: 512px;\n  image-rendering: optimizeSpeed;\n  image-rendering: -moz-crisp-edges;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: -o-crisp-edges;\n  image-rendering: optimize-contrast;\n  image-rendering: crisp-edges;\n  image-rendering: pixelated;\n  -ms-interpolation-mode: nearest-neighbor;\n  user-select: none;\n}\n\n.game-info {\n  position: absolute;\n  top: 0;\n  right: 0;\n  padding: 10px;\n  color: white;\n  font-family: monospace;\n  font-size: 12px;\n  user-select: none;\n}\n\np {\n  margin: 0;\n}\n\n.joystick-zone {\n  position: relative;\n  touch-action: none;\n  flex: 1;\n  user-select: none;\n}\n\n.joystick-container {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}\n\n#joystick-movement {\n  background: rgba(0, 0, 255, 0.2);\n}\n\n#joystick-camera {\n  background: rgba(0, 255, 0, 0.2);\n}\n\n#fps-stats {\n  position: absolute;\n  user-select: none;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -39,6 +39,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _step__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./step */ "./src/step.tsx");
+/* harmony import */ var _url_params__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./url-params */ "./src/url-params.ts");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
@@ -48,6 +49,7 @@ var _jsxFileName = "/Users/kevindial/Workspace/ray-tracing-tutorial/src/app-main
     _s = __webpack_require__.$Refresh$.signature();
 
 // @ts-nocheck
+
 
  // Configuration
 
@@ -88,87 +90,121 @@ function AppMain() {
     }
   }, []);
   return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
-    className: "canvas-container",
-    children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("canvas", {
-      id: "canvas1",
-      ref: canvasRef1,
-      style: {
-        border: isLocked ? 'none' : '3px solid yellow'
-      }
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 45,
-      columnNumber: 7
-    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
-      className: "game-info",
+    className: "app-container",
+    children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      className: "canvas-container",
       children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
-        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-          style: {
-            display: 'inline-block',
-            paddingRight: 10,
-            minWidth: 170
-          },
-          children: ["Mouse Sensitivity: ", roundTwoDec(mouseSensitivity)]
+        className: "game-info",
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
+            style: {
+              display: 'inline-block',
+              paddingRight: 10,
+              minWidth: 170
+            },
+            children: ["Mouse Sensitivity: ", roundTwoDec(mouseSensitivity)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 49,
+            columnNumber: 13
+          }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
+            onClick: () => {
+              setMouseSensitivityUi(mouseSensitivity - 0.05);
+            },
+            children: "-"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 58,
+            columnNumber: 13
+          }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
+            onClick: () => {
+              setMouseSensitivityUi(mouseSensitivity + 0.05);
+            },
+            children: "+"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 65,
+            columnNumber: 13
+          }, this)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 52,
+          lineNumber: 48,
           columnNumber: 11
-        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
-          onClick: () => {
-            setMouseSensitivityUi(mouseSensitivity - 0.05);
-          },
-          children: "-"
-        }, void 0, false, {
+        }, this), Object(_url_params__WEBPACK_IMPORTED_MODULE_3__["shouldShowDebugInfo"])() && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
+          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
+            children: ["Camera AngleX: ", roundTwoDec(uiCameraAngleX)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 75,
+            columnNumber: 15
+          }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
+            children: ["Camera AngleY: ", roundTwoDec(uiCameraAngleY)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 76,
+            columnNumber: 15
+          }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
+            children: ["Camera Origin: ", stringifyVectors(uiCameraOrigin)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 77,
+            columnNumber: 15
+          }, this)]
+        }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 57,
-          columnNumber: 11
-        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
-          onClick: () => {
-            setMouseSensitivityUi(mouseSensitivity + 0.05);
-          },
-          children: "+"
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 64,
-          columnNumber: 11
+          lineNumber: 74,
+          columnNumber: 13
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 51,
+        lineNumber: 47,
         columnNumber: 9
-      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Canvas locked: ", isLocked ? 'true' : 'false']
-      }, void 0, true, {
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("canvas", {
+        id: "canvas1",
+        ref: canvasRef1,
+        style: {
+          border: isLocked ? 'none' : '3px solid yellow'
+        }
+      }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 72,
-        columnNumber: 9
-      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Camera AngleX: ", roundTwoDec(uiCameraAngleX)]
-      }, void 0, true, {
-        fileName: _jsxFileName,
-        lineNumber: 73,
-        columnNumber: 9
-      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Camera AngleY: ", roundTwoDec(uiCameraAngleY)]
-      }, void 0, true, {
-        fileName: _jsxFileName,
-        lineNumber: 74,
-        columnNumber: 9
-      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("p", {
-        children: ["Camera Origin: ", stringifyVectors(uiCameraOrigin)]
-      }, void 0, true, {
-        fileName: _jsxFileName,
-        lineNumber: 75,
+        lineNumber: 81,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 50,
+      lineNumber: 46,
+      columnNumber: 7
+    }, this), window.isMobile && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      className: "joystick-container",
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+        id: "joystick-movement",
+        className: "joystick-zone"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 89,
+        columnNumber: 11
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+        id: "joystick-camera",
+        className: "joystick-zone"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 90,
+        columnNumber: 11
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 88,
+      columnNumber: 9
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      id: "fps-stats"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 93,
       columnNumber: 7
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 44,
+    lineNumber: 45,
     columnNumber: 5
   }, this);
 }
@@ -583,7 +619,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _app_main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-main */ "./src/app-main.tsx");
+/* harmony import */ var _mobile_device_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mobile-device-util */ "./src/mobile-device-util.ts");
+/* harmony import */ var _app_main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-main */ "./src/app-main.tsx");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
@@ -593,17 +630,127 @@ var _jsxFileName = "/Users/kevindial/Workspace/ray-tracing-tutorial/src/index.ts
 
 
 
+
 react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.StrictMode, {
-  children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(_app_main__WEBPACK_IMPORTED_MODULE_4__["default"], {}, void 0, false, {
+  children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(_app_main__WEBPACK_IMPORTED_MODULE_5__["default"], {}, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 8,
+    lineNumber: 9,
     columnNumber: 5
   }, undefined)
 }, void 0, false, {
   fileName: _jsxFileName,
-  lineNumber: 7,
+  lineNumber: 8,
   columnNumber: 3
 }, undefined), document.getElementById('root'));
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
+/***/ "./src/joystick.ts":
+/*!*************************!*\
+  !*** ./src/joystick.ts ***!
+  \*************************/
+/*! exports provided: joystickMovement, joystickCamera, joystickSetup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joystickMovement", function() { return joystickMovement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joystickCamera", function() { return joystickCamera; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joystickSetup", function() { return joystickSetup; });
+/* harmony import */ var nipplejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nipplejs */ "./node_modules/nipplejs/dist/nipplejs.js");
+/* harmony import */ var nipplejs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nipplejs__WEBPACK_IMPORTED_MODULE_0__);
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+// @ts-nocheck
+
+let joystickMovement;
+let joystickCamera;
+function joystickSetup() {
+  joystickMovement = nipplejs__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+    zone: document.getElementById('joystick-movement'),
+    color: 'blue'
+  });
+  joystickCamera = nipplejs__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+    zone: document.getElementById('joystick-camera'),
+    color: 'green'
+  });
+}
 
 const currentExports = __react_refresh_utils__.getModuleExports(module.i);
 __react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
@@ -710,6 +857,102 @@ function keyDownListener(event) {
 window.addEventListener('keydown', keyDownListener, false);
 window.addEventListener('keyup', keyUpListener, false);
 /* harmony default export */ __webpack_exports__["default"] = (keyPress);
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
+/***/ "./src/mobile-device-util.ts":
+/*!***********************************!*\
+  !*** ./src/mobile-device-util.ts ***!
+  \***********************************/
+/*! exports provided: isMobileDevice */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMobileDevice", function() { return isMobileDevice; });
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+// @ts-nocheck
+function isMobileDevice() {
+  return Boolean(window.navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i));
+}
+window.isMobile = isMobileDevice();
 
 const currentExports = __react_refresh_utils__.getModuleExports(module.i);
 __react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
@@ -1011,10 +1254,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vector_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vector-functions */ "./src/vector-functions.tsx");
 /* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! stats.js */ "./node_modules/stats.js/build/stats.min.js");
 /* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(stats_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _url_params__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./url-params */ "./src/url-params.ts");
+/* harmony import */ var _joystick__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./joystick */ "./src/joystick.ts");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
 // @ts-nocheck
+
+
 
 
 
@@ -1029,6 +1276,7 @@ let cameraAngleY = 0; // in degrees
 
 const CAMERA_INIT_Y = 0.5;
 let cameraOrigin = [14, CAMERA_INIT_Y, 14];
+const CAMERA_JOYSTICK_BASE_SENSITIVITY = 0.08;
 const sphereEntities = [// radius, center x, y, z
 [0.5, 0, 8, 0], // sun
 [0.5, 15, 0, 15] // sphere
@@ -1072,39 +1320,59 @@ const boxEntities = [[4, 0, 0, 6, 2, 2]];
 function setup(canvas, setIsLocked) {
   // fps counter
   fpsStats.showPanel(0);
-  document.body.appendChild(fpsStats.dom); // mouse lock
+  document.getElementById('fps-stats').appendChild(fpsStats.dom);
 
-  canvas.onclick = () => {
-    canvas.requestPointerLock();
-  };
+  if (window.isMobile) {
+    // is mobile
+    // setup virtual joysticks
+    Object(_joystick__WEBPACK_IMPORTED_MODULE_5__["joystickSetup"])();
+  } else {
+    // is desktop
+    // canvas mouse lock
+    canvas.onclick = () => {
+      canvas.requestPointerLock();
+    };
 
-  function lockChangeAlert() {
-    if (document.pointerLockElement === canvas) {
-      setIsLocked(true);
-      console.log('locked');
-      document.addEventListener('mousemove', updatePosition, false);
-    } else {
-      setIsLocked(false);
-      console.log('unlocked');
-      document.removeEventListener('mousemove', updatePosition, false);
+    function lockChangeAlert() {
+      if (document.pointerLockElement === canvas) {
+        setIsLocked(true);
+        document.addEventListener('mousemove', updateCameraMouse, false);
+      } else {
+        setIsLocked(false);
+        document.removeEventListener('mousemove', updateCameraMouse, false);
+      }
     }
+
+    document.addEventListener('pointerlockchange', lockChangeAlert, false);
   }
 
-  document.addEventListener('pointerlockchange', lockChangeAlert, false);
   const kernal = Object(_canvas_main_gpu__WEBPACK_IMPORTED_MODULE_0__["canvasMainGpu"])(canvas);
   return kernal;
 }
 
-function updatePosition(e) {
+function updateCameraMouse(e) {
   mouseX += e.movementX * window.mouseSensitivity;
   mouseY += e.movementY * window.mouseSensitivity;
 }
 
+function updateCameraJoystick() {
+  if (_joystick__WEBPACK_IMPORTED_MODULE_5__["joystickCamera"].ids.length) {
+    const joystickPos = _joystick__WEBPACK_IMPORTED_MODULE_5__["joystickCamera"].get(_joystick__WEBPACK_IMPORTED_MODULE_5__["joystickCamera"].ids[0]).frontPosition;
+    mouseX += joystickPos.x * CAMERA_JOYSTICK_BASE_SENSITIVITY * window.mouseSensitivity;
+    mouseY += joystickPos.y * CAMERA_JOYSTICK_BASE_SENSITIVITY * window.mouseSensitivity;
+  }
+}
+
 function step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin) {
-  const shouldStopAnimate = window.location.search.indexOf('stop') >= 0;
+  const shouldStopAnimate = Object(_url_params__WEBPACK_IMPORTED_MODULE_4__["shouldStop"])();
 
   function step() {
     fpsStats.begin(); // update camera
+
+    if (window.isMobile) {
+      // should update on each step, differant than mouse which is update on mouse move event
+      updateCameraJoystick();
+    }
 
     cameraAngleX = (cameraAngleX + mouseX) % 360;
     cameraAngleY = mathClamp(cameraAngleY + mouseY, -85, 85);
@@ -1129,8 +1397,14 @@ function mathClamp(num, min, max) {
 }
 
 function getMoveVector(cameraOrigin) {
+  /* in ray tracing land
+                                 -z
+                                  |
+  camera origin(forward)   -x  ---+--- +x
+                                  |
+                                 +z
+  */
   // camera origin angle is facing -x
-  // in clockwise order, -x, -z, x, z  === W N E S
   // forward is -x
   // backward is +x
   // left is +z
@@ -1140,20 +1414,44 @@ function getMoveVector(cameraOrigin) {
   const y = 1;
   const z = 2;
 
-  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['w']) {
-    moveVector[x] = -1;
-  }
+  if (window.isMobile === false) {
+    /* in keyboard WASD land
+       need to rotate ccw by 90 degrees to match the forwards
+            w(forward)
+            |
+      a  ---+---  d
+            |
+            s
+    */
+    if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['w']) {
+      moveVector[x] = -1;
+    }
 
-  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['s']) {
-    moveVector[x] = 1;
-  }
+    if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['s']) {
+      moveVector[x] = 1;
+    }
 
-  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['a']) {
-    moveVector[z] = 1;
-  }
+    if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['a']) {
+      moveVector[z] = 1;
+    }
 
-  if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['d']) {
-    moveVector[z] = -1;
+    if (_key_press__WEBPACK_IMPORTED_MODULE_1__["default"]['d']) {
+      moveVector[z] = -1;
+    }
+  } else {
+    /* in joystick land (nipplejs)
+       need to rotate ccw by 90 degrees to match the forwards
+           -y(forward)
+            |
+     -x  ---+--- +x
+            |
+           +y
+    */
+    if (_joystick__WEBPACK_IMPORTED_MODULE_5__["joystickMovement"].ids.length) {
+      const joystickPos = _joystick__WEBPACK_IMPORTED_MODULE_5__["joystickMovement"].get(_joystick__WEBPACK_IMPORTED_MODULE_5__["joystickMovement"].ids[0]).frontPosition;
+      moveVector[x] = joystickPos.y;
+      moveVector[z] = joystickPos.x * -1;
+    }
   }
 
   moveVector = Object(_vector_functions__WEBPACK_IMPORTED_MODULE_2__["vecUnit"])(moveVector); // rotate moveVector by cameraAngleX in counter-clockwise rotation
@@ -1178,6 +1476,104 @@ function getMoveVector(cameraOrigin) {
   }
 
   return moveVector;
+}
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
+/***/ "./src/url-params.ts":
+/*!***************************!*\
+  !*** ./src/url-params.ts ***!
+  \***************************/
+/*! exports provided: shouldStop, shouldShowDebugInfo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shouldStop", function() { return shouldStop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shouldShowDebugInfo", function() { return shouldShowDebugInfo; });
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+function shouldStop() {
+  return window.location.search.indexOf('stop') >= 0;
+}
+function shouldShowDebugInfo() {
+  return window.location.search.indexOf('debug') >= 0;
 }
 
 const currentExports = __react_refresh_utils__.getModuleExports(module.i);
