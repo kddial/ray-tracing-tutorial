@@ -14,6 +14,7 @@ let cameraAngleX = 50; // in degrees
 let cameraAngleY = 0; // in degrees
 const CAMERA_INIT_Y = 0.5;
 let cameraOrigin = [14, CAMERA_INIT_Y, 14];
+const CAMERA_JOYSTICK_BASE_SENSITIVITY = 0.08;
 
 const sphereEntities = [
   // radius, center x, y, z
@@ -81,10 +82,10 @@ export function setup(
     function lockChangeAlert() {
       if (document.pointerLockElement === canvas) {
         setIsLocked(true);
-        document.addEventListener('mousemove', updatePosition, false);
+        document.addEventListener('mousemove', updateCameraMouse, false);
       } else {
         setIsLocked(false);
-        document.removeEventListener('mousemove', updatePosition, false);
+        document.removeEventListener('mousemove', updateCameraMouse, false);
       }
     }
     document.addEventListener('pointerlockchange', lockChangeAlert, false);
@@ -94,9 +95,23 @@ export function setup(
   return kernal;
 }
 
-function updatePosition(e: MouseEvent) {
+function updateCameraMouse(e: MouseEvent) {
   mouseX += e.movementX * window.mouseSensitivity;
   mouseY += e.movementY * window.mouseSensitivity;
+}
+
+function updateCameraJoystick() {
+  if (joystickCamera.ids.length) {
+    const joystickPos = joystickCamera.get(joystickCamera.ids[0]).frontPosition;
+    mouseX +=
+      joystickPos.x *
+      CAMERA_JOYSTICK_BASE_SENSITIVITY *
+      window.mouseSensitivity;
+    mouseY +=
+      joystickPos.y *
+      CAMERA_JOYSTICK_BASE_SENSITIVITY *
+      window.mouseSensitivity;
+  }
 }
 
 export function step(
@@ -110,6 +125,11 @@ export function step(
   function step() {
     fpsStats.begin();
     // update camera
+    if (window.isMobile) {
+      // should update on each step, differant than mouse which is update on mouse move event
+      updateCameraJoystick();
+    }
+
     cameraAngleX = (cameraAngleX + mouseX) % 360;
     cameraAngleY = mathClamp(cameraAngleY + mouseY, -85, 85);
     mouseX = 0;
