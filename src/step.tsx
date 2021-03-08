@@ -4,7 +4,7 @@ import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 import Stats from 'stats.js';
 import { shouldStop } from './url-params';
-import { joystickSetup, joystickMovement } from './joystick';
+import { joystickSetup, joystickMovement, joystickCamera } from './joystick';
 
 let fpsStats = new Stats();
 const moveMultiplier = 0.04;
@@ -62,32 +62,33 @@ export function setup(
   canvas: HTMLCanvasElement,
   setIsLocked: (value: boolean) => void,
 ) {
-  // setup virtual joysticks
-  if (window.isMobile) {
-    joystickSetup();
-  }
-
   // fps counter
   fpsStats.showPanel(0);
   document.body.appendChild(fpsStats.dom);
 
-  // mouse lock
-  canvas.onclick = () => {
-    canvas.requestPointerLock();
-  };
+  if (window.isMobile) {
+    // is mobile
 
-  function lockChangeAlert() {
-    if (document.pointerLockElement === canvas) {
-      setIsLocked(true);
-      console.log('locked');
-      document.addEventListener('mousemove', updatePosition, false);
-    } else {
-      setIsLocked(false);
-      console.log('unlocked');
-      document.removeEventListener('mousemove', updatePosition, false);
+    // setup virtual joysticks
+    joystickSetup();
+  } else {
+    // is desktop
+
+    // canvas mouse lock
+    canvas.onclick = () => {
+      canvas.requestPointerLock();
+    };
+    function lockChangeAlert() {
+      if (document.pointerLockElement === canvas) {
+        setIsLocked(true);
+        document.addEventListener('mousemove', updatePosition, false);
+      } else {
+        setIsLocked(false);
+        document.removeEventListener('mousemove', updatePosition, false);
+      }
     }
+    document.addEventListener('pointerlockchange', lockChangeAlert, false);
   }
-  document.addEventListener('pointerlockchange', lockChangeAlert, false);
 
   const kernal = canvasMainGpu(canvas);
   return kernal;
