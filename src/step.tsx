@@ -4,6 +4,7 @@ import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 import Stats from 'stats.js';
 import { shouldStop } from './url-params';
+import { joystickSetup, joystickMovement } from './joystick';
 
 let fpsStats = new Stats();
 const moveMultiplier = 0.04;
@@ -61,6 +62,11 @@ export function setup(
   canvas: HTMLCanvasElement,
   setIsLocked: (value: boolean) => void,
 ) {
+  // setup virtual joysticks
+  if (window.isMobile) {
+    joystickSetup();
+  }
+
   // fps counter
   fpsStats.showPanel(0);
   document.body.appendChild(fpsStats.dom);
@@ -141,8 +147,14 @@ function mathClamp(num: number, min: number, max: number): number {
 }
 
 function getMoveVector(cameraOrigin: number[]) {
+  /* in ray tracing land
+                                 -z
+                                  |
+  camera origin(forward)   -x  ---+--- +x
+                                  |
+                                 +z
+  */
   // camera origin angle is facing -x
-  // in clockwise order, -x, -z, x, z  === W N E S
   // forward is -x
   // backward is +x
   // left is +z
@@ -151,17 +163,43 @@ function getMoveVector(cameraOrigin: number[]) {
   const x = 0;
   const y = 1;
   const z = 2;
-  if (keyPress['w']) {
-    moveVector[x] = -1;
-  }
-  if (keyPress['s']) {
-    moveVector[x] = 1;
-  }
-  if (keyPress['a']) {
-    moveVector[z] = 1;
-  }
-  if (keyPress['d']) {
-    moveVector[z] = -1;
+
+  if (window.isMobile === false) {
+    /* in keyboard WASD land
+       need to rotate ccw by 90 degrees to match the forwards
+            w(forward)
+            |
+      a  ---+---  d
+            |
+            s
+    */
+    if (keyPress['w']) {
+      moveVector[x] = -1;
+    }
+    if (keyPress['s']) {
+      moveVector[x] = 1;
+    }
+    if (keyPress['a']) {
+      moveVector[z] = 1;
+    }
+    if (keyPress['d']) {
+      moveVector[z] = -1;
+    }
+  } else {
+    /* in joystick land (nipplejs)
+       need to rotate ccw by 90 degrees to match the forwards
+           -y(forward)
+            |
+     -x  ---+--- +x
+            |
+           +y
+    */
+    if (joystickMovement.ids.length) {
+      const joystickPos = joystickMovement.get(joystickMovement.ids[0])
+        .frontPosition;
+      moveVector[x] = joystickPos.y;
+      moveVector[z] = joystickPos.x * -1;
+    }
   }
   moveVector = vecUnit(moveVector);
 

@@ -2,8 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { setup, step } from './step';
 import { shouldShowDebugInfo } from './url-params';
-import nipplejs from 'nipplejs';
-import { useMobileDevice } from './mobile-device-hook';
 
 // Configuration
 export const WIDTH = 256; // should match in kernalFunction
@@ -16,7 +14,6 @@ export default function AppMain() {
   const [uiCameraAngleY, setUICameraAngleY] = useState(null);
   const [uiCameraOrigin, setUICameraOrigin] = useState([0, 0, 0]);
   const [mouseSensitivity, setMouseSensitivity] = useState(null);
-  const { isMobile } = useMobileDevice();
 
   const setMouseSensitivityUi = (value) => {
     if (value <= 0.05) {
@@ -43,19 +40,6 @@ export default function AppMain() {
       step(kernal, setUICameraAngleX, setUICameraAngleY, setUICameraOrigin);
     }
   }, []);
-
-  useEffect(() => {
-    if (isMobile) {
-      const joystickCamera = nipplejs.create({
-        zone: document.getElementById('joystick-camera'),
-        color: 'blue',
-      });
-      const joystickMovement = nipplejs.create({
-        zone: document.getElementById('joystick-movement'),
-        color: 'red',
-      });
-    }
-  }, [isMobile]);
 
   return (
     <div className="app-container">
@@ -100,7 +84,7 @@ export default function AppMain() {
           style={{ border: isLocked ? 'none' : '3px solid yellow' }}
         ></canvas>
       </div>
-      {isMobile && (
+      {window.isMobile && (
         <div className="joystick-container">
           <div id="joystick-camera" className="joystick-zone" />
           <div id="joystick-movement" className="joystick-zone" />
