@@ -90,6 +90,7 @@ export default function AppMain() {
           <div id="joystick-camera" className="joystick-zone" />
         </div>
       )}
+      <div id="fps-stats" />
     </div>
   );
 }

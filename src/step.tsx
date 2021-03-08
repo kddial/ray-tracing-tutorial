@@ -65,7 +65,7 @@ export function setup(
 ) {
   // fps counter
   fpsStats.showPanel(0);
-  document.body.appendChild(fpsStats.dom);
+  document.getElementById('fps-stats').appendChild(fpsStats.dom);
 
   if (window.isMobile) {
     // is mobile
