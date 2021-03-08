@@ -3,6 +3,8 @@ import { canvasMainGpu } from './canvas-main-gpu';
 import keyPress from './key-press';
 import { vecAdd, vecMultiplyNum, vecUnit } from './vector-functions';
 import Stats from 'stats.js';
+import { shouldStop } from './url-params';
+import { joystickSetup, joystickMovement, joystickCamera } from './joystick';
 
 let fpsStats = new Stats();
 const moveMultiplier = 0.04;
@@ -12,6 +14,7 @@ let cameraAngleX = 50; // in degrees
 let cameraAngleY = 0; // in degrees
 const CAMERA_INIT_Y = 0.5;
 let cameraOrigin = [14, CAMERA_INIT_Y, 14];
+const CAMERA_JOYSTICK_BASE_SENSITIVITY = 0.08;
 
 const sphereEntities = [
   // radius, center x, y, z
@@ -62,33 +65,53 @@ export function setup(
 ) {
   // fps counter
   fpsStats.showPanel(0);
-  document.body.appendChild(fpsStats.dom);
+  document.getElementById('fps-stats').appendChild(fpsStats.dom);
 
-  // mouse lock
-  canvas.onclick = () => {
-    canvas.requestPointerLock();
-  };
+  if (window.isMobile) {
+    // is mobile
 
-  function lockChangeAlert() {
-    if (document.pointerLockElement === canvas) {
-      setIsLocked(true);
-      console.log('locked');
-      document.addEventListener('mousemove', updatePosition, false);
-    } else {
-      setIsLocked(false);
-      console.log('unlocked');
-      document.removeEventListener('mousemove', updatePosition, false);
+    // setup virtual joysticks
+    joystickSetup();
+  } else {
+    // is desktop
+
+    // canvas mouse lock
+    canvas.onclick = () => {
+      canvas.requestPointerLock();
+    };
+    function lockChangeAlert() {
+      if (document.pointerLockElement === canvas) {
+        setIsLocked(true);
+        document.addEventListener('mousemove', updateCameraMouse, false);
+      } else {
+        setIsLocked(false);
+        document.removeEventListener('mousemove', updateCameraMouse, false);
+      }
     }
+    document.addEventListener('pointerlockchange', lockChangeAlert, false);
   }
-  document.addEventListener('pointerlockchange', lockChangeAlert, false);
 
   const kernal = canvasMainGpu(canvas);
   return kernal;
 }
 
-function updatePosition(e: MouseEvent) {
+function updateCameraMouse(e: MouseEvent) {
   mouseX += e.movementX * window.mouseSensitivity;
   mouseY += e.movementY * window.mouseSensitivity;
+}
+
+function updateCameraJoystick() {
+  if (joystickCamera.ids.length) {
+    const joystickPos = joystickCamera.get(joystickCamera.ids[0]).frontPosition;
+    mouseX +=
+      joystickPos.x *
+      CAMERA_JOYSTICK_BASE_SENSITIVITY *
+      window.mouseSensitivity;
+    mouseY +=
+      joystickPos.y *
+      CAMERA_JOYSTICK_BASE_SENSITIVITY *
+      window.mouseSensitivity;
+  }
 }
 
 export function step(
@@ -97,11 +120,16 @@ export function step(
   setUICameraAngleY: (value: number) => void,
   setUICameraOrigin: (origin: number[]) => void,
 ) {
-  const shouldStopAnimate = window.location.search.indexOf('stop') >= 0;
+  const shouldStopAnimate = shouldStop();
 
   function step() {
     fpsStats.begin();
     // update camera
+    if (window.isMobile) {
+      // should update on each step, differant than mouse which is update on mouse move event
+      updateCameraJoystick();
+    }
+
     cameraAngleX = (cameraAngleX + mouseX) % 360;
     cameraAngleY = mathClamp(cameraAngleY + mouseY, -85, 85);
     mouseX = 0;
@@ -140,8 +168,14 @@ function mathClamp(num: number, min: number, max: number): number {
 }
 
 function getMoveVector(cameraOrigin: number[]) {
+  /* in ray tracing land
+                                 -z
+                                  |
+  camera origin(forward)   -x  ---+--- +x
+                                  |
+                                 +z
+  */
   // camera origin angle is facing -x
-  // in clockwise order, -x, -z, x, z  === W N E S
   // forward is -x
   // backward is +x
   // left is +z
@@ -150,17 +184,43 @@ function getMoveVector(cameraOrigin: number[]) {
   const x = 0;
   const y = 1;
   const z = 2;
-  if (keyPress['w']) {
-    moveVector[x] = -1;
-  }
-  if (keyPress['s']) {
-    moveVector[x] = 1;
-  }
-  if (keyPress['a']) {
-    moveVector[z] = 1;
-  }
-  if (keyPress['d']) {
-    moveVector[z] = -1;
+
+  if (window.isMobile === false) {
+    /* in keyboard WASD land
+       need to rotate ccw by 90 degrees to match the forwards
+            w(forward)
+            |
+      a  ---+---  d
+            |
+            s
+    */
+    if (keyPress['w']) {
+      moveVector[x] = -1;
+    }
+    if (keyPress['s']) {
+      moveVector[x] = 1;
+    }
+    if (keyPress['a']) {
+      moveVector[z] = 1;
+    }
+    if (keyPress['d']) {
+      moveVector[z] = -1;
+    }
+  } else {
+    /* in joystick land (nipplejs)
+       need to rotate ccw by 90 degrees to match the forwards
+           -y(forward)
+            |
+     -x  ---+--- +x
+            |
+           +y
+    */
+    if (joystickMovement.ids.length) {
+      const joystickPos = joystickMovement.get(joystickMovement.ids[0])
+        .frontPosition;
+      moveVector[x] = joystickPos.y;
+      moveVector[z] = joystickPos.x * -1;
+    }
   }
   moveVector = vecUnit(moveVector);
 

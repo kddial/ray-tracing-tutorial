@@ -10,16 +10,26 @@ body {
   height: 100%;
 }
 
-.canvas-container {
+.app-container {
   width: 100%;
   height: 100%;
   background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 canvas {
+  cursor: pointer;
   width: 100%;
   max-width: 512px;
   image-rendering: optimizeSpeed;
@@ -30,18 +40,46 @@ canvas {
   image-rendering: crisp-edges;
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
+  user-select: none;
 }
 
 .game-info {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
+  right: 0;
   padding: 10px;
   color: white;
   font-family: monospace;
   font-size: 12px;
+  user-select: none;
 }
 
 p {
   margin: 0;
+}
+
+.joystick-zone {
+  position: relative;
+  touch-action: none;
+  flex: 1;
+  user-select: none;
+}
+
+.joystick-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#joystick-movement {
+  background: rgba(0, 0, 255, 0.2);
+}
+
+#joystick-camera {
+  background: rgba(0, 255, 0, 0.2);
+}
+
+#fps-stats {
+  position: absolute;
+  user-select: none;
 }

@@ -1,6 +1,7 @@
 // @ts-nocheck
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { setup, step } from './step';
+import { shouldShowDebugInfo } from './url-params';
 
 // Configuration
 export const WIDTH = 256; // should match in kernalFunction
@@ -41,39 +42,55 @@ export default function AppMain() {
   }, []);
 
   return (
-    <div className="canvas-container">
-      <canvas
-        id="canvas1"
-        ref={canvasRef1}
-        style={{ border: isLocked ? 'none' : '3px solid yellow' }}
-      ></canvas>
-      <div className="game-info">
-        <div>
-          <p
-            style={{ display: 'inline-block', paddingRight: 10, minWidth: 170 }}
-          >
-            Mouse Sensitivity: {roundTwoDec(mouseSensitivity)}
-          </p>
-          <button
-            onClick={() => {
-              setMouseSensitivityUi(mouseSensitivity - 0.05);
-            }}
-          >
-            -
-          </button>
-          <button
-            onClick={() => {
-              setMouseSensitivityUi(mouseSensitivity + 0.05);
-            }}
-          >
-            +
-          </button>
+    <div className="app-container">
+      <div className="canvas-container">
+        <div className="game-info">
+          <div>
+            <p
+              style={{
+                display: 'inline-block',
+                paddingRight: 10,
+                minWidth: 170,
+              }}
+            >
+              Mouse Sensitivity: {roundTwoDec(mouseSensitivity)}
+            </p>
+            <button
+              onClick={() => {
+                setMouseSensitivityUi(mouseSensitivity - 0.05);
+              }}
+            >
+              -
+            </button>
+            <button
+              onClick={() => {
+                setMouseSensitivityUi(mouseSensitivity + 0.05);
+              }}
+            >
+              +
+            </button>
+          </div>
+          {shouldShowDebugInfo() && (
+            <React.Fragment>
+              <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
+              <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
+              <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
+            </React.Fragment>
+          )}
         </div>
-        <p>Canvas locked: {isLocked ? 'true' : 'false'}</p>
-        <p>Camera AngleX: {roundTwoDec(uiCameraAngleX)}</p>
-        <p>Camera AngleY: {roundTwoDec(uiCameraAngleY)}</p>
-        <p>Camera Origin: {stringifyVectors(uiCameraOrigin)}</p>
+        <canvas
+          id="canvas1"
+          ref={canvasRef1}
+          style={{ border: isLocked ? 'none' : '3px solid yellow' }}
+        ></canvas>
       </div>
+      {window.isMobile && (
+        <div className="joystick-container">
+          <div id="joystick-movement" className="joystick-zone" />
+          <div id="joystick-camera" className="joystick-zone" />
+        </div>
+      )}
+      <div id="fps-stats" />
     </div>
   );
 }
