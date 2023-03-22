@@ -1,3 +1,14 @@
+# demo
+
+
+https://3d.kevindial.com/
+
+<img src="./public/3dworld-preview.png" width="200px" />
+
+
+- on desktop, use WASD to move player and mouse to move screen
+- on mobile, touch bottom left quadrant to move player and touch bottom right quadrant to move screen
+
 
 # learning ray tracing (path tracer)
 
